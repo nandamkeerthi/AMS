@@ -13,6 +13,8 @@ import KnowledgeArticle from '@/pages/KnowledgeArticle';
 import CreateKnowledgeArticle from '@/pages/CreateKnowledgeArticle';
 import AiAssistant from '@/pages/AiAssistant';
 import Analytics from '@/pages/Analytics';
+import Profile from '@/pages/Profile';
+import Settings from '@/pages/Settings';
 import Placeholder from '@/pages/Placeholder';
 import NotFound from '@/pages/NotFound';
 
@@ -89,14 +91,12 @@ const router = createBrowserRouter([
         element: <Analytics />,
       },
       {
+        path: 'profile',
+        element: <Profile />,
+      },
+      {
         path: 'settings',
-        element: (
-          <Placeholder
-            title="Settings"
-            description="Configure workspace preferences and integrations"
-            iconKey="settings"
-          />
-        ),
+        element: <Settings />,
       },
       {
         path: '*',

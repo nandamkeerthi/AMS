@@ -1,0 +1,42 @@
+.card {
+  min-width: 0;
+}
+
+.fieldset {
+  width: 100%;
+}
+
+.legend {
+  font-size: 0.8125rem !important;
+  color: var(--color-text-secondary) !important;
+  margin-bottom: var(--spacing-sm) !important;
+}
+
+.radioGroup {
+  gap: var(--spacing-xs);
+}
+
+.radioItem {
+  align-items: flex-start !important;
+  margin: 0 !important;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--color-border-light);
+  border-radius: 4px;
+}
+
+.optionLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.optionTitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.optionDesc {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}

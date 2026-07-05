@@ -1,0 +1,25 @@
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border-light);
+  border-radius: 4px;
+  background: #fafbfc;
+}
+
+.btn {
+  border-radius: 4px !important;
+  text-transform: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 640px) {
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

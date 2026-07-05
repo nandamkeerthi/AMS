@@ -1,0 +1,37 @@
+{
+  "pageConfig": {
+    "title": "Profile",
+    "subtitle": "Manage your personal information and contact details"
+  },
+  "user": {
+    "id": "usr-001",
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "displayName": "Jane Doe",
+    "jobTitle": "Support Lead",
+    "department": "Application Maintenance & Support",
+    "bio": "Senior support engineer specializing in incident management, log analysis, and AI-assisted troubleshooting across enterprise banking platforms.",
+    "avatar": {
+      "initials": "JD",
+      "color": "#2563EB",
+      "imageUrl": null
+    },
+    "role": {
+      "name": "Support Lead",
+      "type": "lead",
+      "description": "Full access to incidents, knowledge base, analytics, and team management"
+    },
+    "team": {
+      "name": "Platform Support",
+      "manager": "Alex Chen",
+      "memberCount": 8,
+      "location": "Engineering — NOC Tier 2"
+    },
+    "contact": {
+      "email": "jane.doe@company.com",
+      "phone": "+1 (555) 234-8901",
+      "location": "San Francisco, CA",
+      "slackHandle": "@jane.doe"
+    }
+  }
+}
