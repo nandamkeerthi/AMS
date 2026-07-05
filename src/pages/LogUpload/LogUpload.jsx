@@ -8,7 +8,7 @@ import {
   SkeletonLoader,
 } from '@/components/common';
 import { useAsyncData } from '@/hooks';
-import { logUploadService } from './logUploadService';
+import { incidentService } from '@/services/incidentService';
 import { LogDropzone, UploadFileList, SupportedFormatsPanel } from './components';
 import styles from './LogUpload.module.css';
 
@@ -18,7 +18,7 @@ const fieldSx = {
 
 function LogUpload() {
   const { data, loading, error, refetch } = useAsyncData(
-    () => logUploadService.getPageData(),
+    () => incidentService.getLogUploadPageData(),
     []
   );
 
@@ -30,7 +30,7 @@ function LogUpload() {
   useEffect(() => {
     if (!data) return;
 
-    setFiles(data.recentUploads.map(logUploadService.normalizeUploadEntry));
+    setFiles(data.recentUploads.map(incidentService.normalizeUploadEntry));
     setApplication(data.context.defaultApplication);
     setEnvironment(data.context.defaultEnvironment);
   }, [data]);
@@ -41,7 +41,7 @@ function LogUpload() {
   }, []);
 
   const acceptMap = useMemo(
-    () => logUploadService.buildAcceptMap(data?.supportedFormats ?? []),
+    () => incidentService.buildAcceptMap(data?.supportedFormats ?? []),
     [data?.supportedFormats]
   );
 
@@ -60,7 +60,7 @@ function LogUpload() {
             return entry;
           }
 
-          const progress = logUploadService.getNextProgress(entry.progress, fileSize);
+          const progress = incidentService.getNextProgress(entry.progress, fileSize);
 
           if (progress >= 100) {
             completed = true;
@@ -104,7 +104,7 @@ function LogUpload() {
 
       const nextUploads = acceptedFiles
         .slice(0, availableSlots)
-        .map((file) => logUploadService.createUploadFromFile(file));
+        .map((file) => incidentService.createUploadFromFile(file));
 
       setFiles((prev) => [...nextUploads, ...prev]);
 

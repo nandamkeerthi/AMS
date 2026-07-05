@@ -1,8 +1,12 @@
 import knowledgeSearchData from '@/data/dummy/knowledgeSearch.json';
-
+import knowledgeArticlesData from '@/data/dummy/knowledgeArticles.json';
+import createKnowledgeArticleData from '@/data/dummy/createKnowledgeArticle.json';
 import { delay } from '@/utils/async';
 
-const SIMULATED_DELAY_MS = 350;
+/**
+ * Knowledge service — frontend data layer for knowledge base search and articles.
+ * Replace dummy resolution with ASP.NET Core API calls (e.g. GET /api/knowledge).
+ */
 
 function getArticlesByIds(articles, ids = []) {
   const map = new Map(articles.map((article) => [article.id, article]));
@@ -101,16 +105,60 @@ function formatDate(iso) {
   });
 }
 
-export const knowledgeSearchService = {
-  async getPageData() {
-    await delay(SIMULATED_DELAY_MS);
-    return knowledgeSearchData;
+function formatDateTime(iso) {
+  return new Date(iso).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+}
+
+export const knowledgeService = {
+  async getSearchPageData() {
+    await delay(350);
+    return Promise.resolve(knowledgeSearchData);
   },
 
   getArticlesByIds,
   filterArticles,
   sortArticles,
   formatDate,
+
+  async getArticleById(id) {
+    await delay(350);
+    const article = knowledgeArticlesData.articles[id];
+    if (!article) {
+      throw new Error(`Article ${id} not found`);
+    }
+    return Promise.resolve(article);
+  },
+
+  formatDateTime,
+
+  async getFormOptions() {
+    await delay(400);
+    return Promise.resolve(createKnowledgeArticleData);
+  },
+
+  async saveDraft(payload) {
+    await delay(600);
+    return Promise.resolve({
+      draftId: `DRAFT-KB-${Date.now()}`,
+      ...payload,
+      status: 'draft',
+      savedAt: new Date().toISOString(),
+    });
+  },
+
+  async publishArticle(payload) {
+    await delay(900);
+    return Promise.resolve({
+      id: `KB-${Math.floor(1100 + Math.random() * 899)}`,
+      ...payload,
+      status: 'published',
+      publishedAt: new Date().toISOString(),
+    });
+  },
 };
 
-export default knowledgeSearchService;
+export default knowledgeService;

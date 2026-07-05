@@ -13,7 +13,7 @@ import {
 } from '@/components/common';
 import { useAsyncData, useDebounce } from '@/hooks';
 import { getStatIcon } from '@/utils/iconMap';
-import { incidentService } from './incidentService';
+import { incidentService } from '@/services/incidentService';
 import { IncidentFilterBar, IncidentViewTabs } from './components';
 import styles from './IncidentList.module.css';
 

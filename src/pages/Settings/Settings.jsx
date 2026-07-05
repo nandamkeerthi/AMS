@@ -8,7 +8,7 @@ import {
   FormActions,
 } from '@/components/common';
 import { useAsyncData } from '@/hooks';
-import { settingsService } from './settingsService';
+import { profileService } from '@/services/profileService';
 import {
   ThemePreferencesSection,
   NotificationPreferencesSection,
@@ -20,7 +20,7 @@ import styles from './Settings.module.css';
 
 function Settings() {
   const { data, loading, error, refetch } = useAsyncData(
-    () => settingsService.getPageData(),
+    () => profileService.getSettingsPageData(),
     []
   );
 
@@ -33,7 +33,7 @@ function Settings() {
 
   useEffect(() => {
     if (!data) return;
-    const formValues = settingsService.buildFormValues(data);
+    const formValues = profileService.buildSettingsFormValues(data);
     setSavedDefaults(formValues);
     reset(formValues);
   }, [data, reset]);
@@ -47,7 +47,7 @@ function Settings() {
   const onSave = handleSubmit(async (formValues) => {
     setSaving(true);
     try {
-      await settingsService.saveSettings(formValues);
+      await profileService.saveSettings(formValues);
       setSavedDefaults(formValues);
       toast.success('Settings saved successfully');
     } catch {

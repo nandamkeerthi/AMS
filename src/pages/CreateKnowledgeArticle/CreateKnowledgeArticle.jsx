@@ -17,7 +17,7 @@ import {
 } from '@/components/common';
 import { AttachmentDropzone } from '@/pages/Incidents/CreateIncident/components';
 import { useAsyncData } from '@/hooks';
-import { createKnowledgeArticleService } from './createKnowledgeArticleService';
+import { knowledgeService } from '@/services/knowledgeService';
 import {
   TagsInput,
   DynamicListField,
@@ -50,7 +50,7 @@ function CreateKnowledgeArticle() {
   const [publishing, setPublishing] = useState(false);
 
   const { data: options, loading, error, refetch } = useAsyncData(
-    () => createKnowledgeArticleService.getFormOptions(),
+    () => knowledgeService.getFormOptions(),
     []
   );
 
@@ -96,7 +96,7 @@ function CreateKnowledgeArticle() {
   const onSaveDraft = async () => {
     setSavingDraft(true);
     try {
-      const result = await createKnowledgeArticleService.saveDraft(
+      const result = await knowledgeService.saveDraft(
         buildPayload(watch())
       );
       toast.success(`Draft saved (${result.draftId})`);
@@ -110,7 +110,7 @@ function CreateKnowledgeArticle() {
   const onPublish = async (formData) => {
     setPublishing(true);
     try {
-      const result = await createKnowledgeArticleService.publishArticle(
+      const result = await knowledgeService.publishArticle(
         buildPayload(formData)
       );
       toast.success(`Article ${result.id} published successfully`);

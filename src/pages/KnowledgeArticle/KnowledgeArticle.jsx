@@ -10,7 +10,7 @@ import {
   SkeletonLoader,
 } from '@/components/common';
 import { useAsyncData } from '@/hooks';
-import { knowledgeArticleService } from './knowledgeArticleService';
+import { knowledgeService } from '@/services/knowledgeService';
 import {
   ArticleMetadata,
   AiSummaryPanel,
@@ -25,7 +25,7 @@ function KnowledgeArticle() {
   const { id } = useParams();
 
   const { data: article, loading, error, refetch } = useAsyncData(
-    () => knowledgeArticleService.getArticleById(id),
+    () => knowledgeService.getArticleById(id),
     [id]
   );
 

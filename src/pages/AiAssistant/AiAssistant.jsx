@@ -6,7 +6,7 @@ import {
   SkeletonLoader,
 } from '@/components/common';
 import { useAsyncData } from '@/hooks';
-import { aiAssistantService } from './aiAssistantService';
+import { aiService } from '@/services/aiService';
 import {
   ChatWindow,
   IncidentContextPanel,
@@ -17,12 +17,12 @@ import {
 import styles from './AiAssistant.module.css';
 
 function buildWelcomeMessage(welcome) {
-  return aiAssistantService.createMessage('assistant', welcome.content);
+  return aiService.createMessage('assistant', welcome.content);
 }
 
 function AiAssistant() {
   const { data, loading, error, refetch } = useAsyncData(
-    () => aiAssistantService.getPageData(),
+    () => aiService.getAssistantPageData(),
     []
   );
 
@@ -39,13 +39,13 @@ function AiAssistant() {
   const handleSend = useCallback(async (text) => {
     if (!data || isTyping) return;
 
-    const userMessage = aiAssistantService.createMessage('user', text);
+    const userMessage = aiService.createMessage('user', text);
     setMessages((prev) => [...prev, userMessage]);
     setActiveConversationId(null);
     setIsTyping(true);
 
     try {
-      const aiMessage = await aiAssistantService.getAiResponse(text, data.responses);
+      const aiMessage = await aiService.getAiResponse(text, data.responses);
       setMessages((prev) => [...prev, aiMessage]);
     } catch {
       toast.error('Failed to get AI response');
@@ -64,7 +64,7 @@ function AiAssistant() {
 
   const handleHistorySelect = useCallback((conversationId) => {
     if (!data) return;
-    const historyMessages = aiAssistantService.getHistoryMessages(conversationId, data);
+    const historyMessages = aiService.getHistoryMessages(conversationId, data);
     setMessages([
       buildWelcomeMessage(data.welcomeMessage),
       ...historyMessages,

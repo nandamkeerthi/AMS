@@ -9,7 +9,7 @@ import {
 } from '@/components/common';
 import { useAsyncData, useDebounce, useMediaQuery } from '@/hooks';
 import { BREAKPOINTS } from '@/utils/constants';
-import { knowledgeSearchService } from './knowledgeSearchService';
+import { knowledgeService } from '@/services/knowledgeService';
 import {
   CategoriesPanel,
   KnowledgeFilterBar,
@@ -21,7 +21,7 @@ import styles from './KnowledgeSearch.module.css';
 
 function KnowledgeSearch() {
   const { data, loading, error, refetch } = useAsyncData(
-    () => knowledgeSearchService.getPageData(),
+    () => knowledgeService.getSearchPageData(),
     []
   );
 
@@ -40,7 +40,7 @@ function KnowledgeSearch() {
   const filteredArticles = useMemo(() => {
     if (!data) return [];
 
-    const filtered = knowledgeSearchService.filterArticles(data.articles, {
+    const filtered = knowledgeService.filterArticles(data.articles, {
       search: debouncedSearch,
       category: categoryFilter,
       application: applicationFilter,
@@ -48,7 +48,7 @@ function KnowledgeSearch() {
       categoryId: categoryNavId,
     });
 
-    return knowledgeSearchService.sortArticles(filtered, sortBy, debouncedSearch);
+    return knowledgeService.sortArticles(filtered, sortBy, debouncedSearch);
   }, [
     data,
     debouncedSearch,
@@ -60,17 +60,17 @@ function KnowledgeSearch() {
   ]);
 
   const aiSuggested = useMemo(
-    () => (data ? knowledgeSearchService.getArticlesByIds(data.articles, data.aiSuggestedIds) : []),
+    () => (data ? knowledgeService.getArticlesByIds(data.articles, data.aiSuggestedIds) : []),
     [data]
   );
 
   const recentArticles = useMemo(
-    () => (data ? knowledgeSearchService.getArticlesByIds(data.articles, data.recentIds) : []),
+    () => (data ? knowledgeService.getArticlesByIds(data.articles, data.recentIds) : []),
     [data]
   );
 
   const popularArticles = useMemo(
-    () => (data ? knowledgeSearchService.getArticlesByIds(data.articles, data.popularIds) : []),
+    () => (data ? knowledgeService.getArticlesByIds(data.articles, data.popularIds) : []),
     [data]
   );
 

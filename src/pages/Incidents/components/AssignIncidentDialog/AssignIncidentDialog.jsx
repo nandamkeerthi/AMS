@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { SearchBar, EmptyState } from '@/components/common';
 import { useDebounce } from '@/hooks';
-import { assignEngineerService } from './assignEngineerService';
+import { incidentService } from '@/services/incidentService';
 import styles from './AssignIncidentDialog.module.css';
 
 const AVAILABILITY_LABELS = {
@@ -49,7 +49,7 @@ function AssignIncidentDialog({
     setSelectedId(null);
     setLoading(true);
 
-    assignEngineerService
+    incidentService
       .getEngineers()
       .then((data) => setEngineers(data))
       .finally(() => setLoading(false));

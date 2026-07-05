@@ -2,7 +2,10 @@ import analyticsData from '@/data/dummy/analytics.json';
 import { delay } from '@/utils/async';
 import { triggerDownload } from '@/utils/download';
 
-const LOAD_DELAY_MS = 400;
+/**
+ * Analytics service — frontend data layer for reporting and chart data.
+ * Replace dummy resolution with ASP.NET Core API calls (e.g. GET /api/analytics).
+ */
 
 function scaleValue(value, scale) {
   return Math.max(1, Math.round(value * scale));
@@ -82,8 +85,8 @@ function buildReportContent(filters, chartData) {
 
 export const analyticsService = {
   async getPageData() {
-    await delay(LOAD_DELAY_MS);
-    return analyticsData;
+    await delay(400);
+    return Promise.resolve(analyticsData);
   },
 
   getChartData(pageData, dateRange, application) {

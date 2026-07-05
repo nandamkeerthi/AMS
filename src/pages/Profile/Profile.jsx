@@ -8,7 +8,7 @@ import {
   FormActions,
 } from '@/components/common';
 import { useAsyncData } from '@/hooks';
-import { profileService } from './profileService';
+import { profileService } from '@/services/profileService';
 import {
   ProfileAvatarSection,
   ProfileUserInfoSection,

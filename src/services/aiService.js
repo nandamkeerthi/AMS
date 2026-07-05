@@ -1,9 +1,34 @@
+import aiAssistantData from '@/data/dummy/aiAssistant.json';
 import aiAnalysisData from '@/data/dummy/aiAnalysis.json';
 import { delay } from '@/utils/async';
 import { triggerDownload } from '@/utils/download';
 import { formatDateTime } from '@/utils/format';
 
-function buildReportContent(data) {
+/**
+ * AI service — frontend data layer for AI assistant and analysis features.
+ * Replace dummy resolution with ASP.NET Core API calls (e.g. POST /api/ai/chat).
+ */
+
+const TYPING_DELAY_MS = 1200;
+
+function matchResponse(userMessage, responses) {
+  const text = userMessage.toLowerCase();
+  const matched = responses.find((entry) =>
+    entry.keywords.some((keyword) => keyword !== 'default' && text.includes(keyword))
+  );
+  return matched || responses.find((entry) => entry.keywords.includes('default'));
+}
+
+function createMessage(role, content) {
+  return {
+    id: `msg-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    role,
+    content,
+    timestamp: new Date().toISOString(),
+  };
+}
+
+function buildAnalysisReportContent(data) {
   const lines = [
     'AMS Workbench — AI Analysis Report',
     '===================================',
@@ -62,15 +87,36 @@ function buildReportContent(data) {
   return lines.join('\n');
 }
 
-export const aiAnalysisService = {
-  async getPageData() {
+export const aiService = {
+  async getAssistantPageData() {
     await delay(350);
-    return aiAnalysisData;
+    return Promise.resolve(aiAssistantData);
+  },
+
+  createMessage,
+
+  async getAiResponse(userMessage, responses) {
+    await delay(TYPING_DELAY_MS);
+    const matched = matchResponse(userMessage, responses);
+    return Promise.resolve(createMessage('assistant', matched.content));
+  },
+
+  getHistoryMessages(historyId, data) {
+    return (data.historyMessages[historyId] || []).map((msg, index) => ({
+      ...msg,
+      id: `hist-${historyId}-${index}`,
+      timestamp: new Date().toISOString(),
+    }));
+  },
+
+  async getAnalysisPageData() {
+    await delay(350);
+    return Promise.resolve(aiAnalysisData);
   },
 
   formatDateTime,
-  buildReportContent,
+  buildReportContent: buildAnalysisReportContent,
   triggerDownload,
 };
 
-export default aiAnalysisService;
+export default aiService;

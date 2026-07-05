@@ -1,10 +1,13 @@
 import profileData from '@/data/dummy/profile.json';
+import settingsData from '@/data/dummy/settings.json';
 import { delay } from '@/utils/async';
 
-const LOAD_DELAY_MS = 400;
-const SAVE_DELAY_MS = 600;
+/**
+ * Profile service — frontend data layer for user profile and workspace settings.
+ * Replace dummy resolution with ASP.NET Core API calls (e.g. GET /api/profile).
+ */
 
-function buildFormValues(user) {
+function buildProfileFormValues(user) {
   return {
     firstName: user.firstName,
     lastName: user.lastName,
@@ -40,22 +43,48 @@ function mergeFormIntoUser(user, formValues) {
   };
 }
 
+function buildSettingsFormValues(data) {
+  return {
+    theme: data.defaults.theme,
+    language: data.defaults.language,
+    timezone: data.defaults.timezone,
+    notifications: { ...data.defaults.notifications },
+    dashboard: { ...data.defaults.dashboard },
+  };
+}
+
 export const profileService = {
   async getPageData() {
-    await delay(LOAD_DELAY_MS);
-    return profileData;
+    await delay(400);
+    return Promise.resolve(profileData);
   },
 
   async saveProfile(formValues, currentUser) {
-    await delay(SAVE_DELAY_MS);
-    return {
+    await delay(600);
+    return Promise.resolve({
       success: true,
       user: mergeFormIntoUser(currentUser, formValues),
       savedAt: new Date().toISOString(),
-    };
+    });
   },
 
-  buildFormValues,
+  buildFormValues: buildProfileFormValues,
+
+  async getSettingsPageData() {
+    await delay(400);
+    return Promise.resolve(settingsData);
+  },
+
+  async saveSettings(formValues) {
+    await delay(600);
+    return Promise.resolve({
+      success: true,
+      settings: formValues,
+      savedAt: new Date().toISOString(),
+    });
+  },
+
+  buildSettingsFormValues,
 };
 
 export default profileService;

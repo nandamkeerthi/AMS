@@ -8,7 +8,7 @@ import {
   SkeletonLoader,
 } from '@/components/common';
 import { useAsyncData } from '@/hooks';
-import { aiAnalysisService } from './aiAnalysisService';
+import { aiService } from '@/services/aiService';
 import {
   IncidentSummaryCard,
   RootCauseCard,
@@ -24,15 +24,15 @@ import styles from './AiAnalysis.module.css';
 
 function AiAnalysis() {
   const { data, loading, error, refetch } = useAsyncData(
-    () => aiAnalysisService.getPageData(),
+    () => aiService.getAnalysisPageData(),
     []
   );
 
   const handleDownloadReport = useCallback(() => {
     if (!data) return;
 
-    const content = aiAnalysisService.buildReportContent(data);
-    aiAnalysisService.triggerDownload(content, data.pageConfig.reportFileName);
+    const content = aiService.buildReportContent(data);
+    aiService.triggerDownload(content, data.pageConfig.reportFileName);
     toast.success('AI analysis report downloaded');
   }, [data]);
 
@@ -83,7 +83,7 @@ function AiAnalysis() {
         </span>
         <span>
           <strong>Generated:</strong>{' '}
-          {aiAnalysisService.formatDateTime(data.pageConfig.generatedAt)}
+          {aiService.formatDateTime(data.pageConfig.generatedAt)}
         </span>
         <span>
           <strong>Confidence:</strong> {data.confidenceScore.overall}%

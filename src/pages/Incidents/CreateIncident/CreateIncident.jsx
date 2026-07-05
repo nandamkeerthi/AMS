@@ -16,7 +16,7 @@ import {
   SkeletonLoader,
 } from '@/components/common';
 import { useAsyncData } from '@/hooks';
-import { createIncidentService } from './createIncidentService';
+import { incidentService } from '@/services/incidentService';
 import { AiAssistPanel, AttachmentDropzone } from './components';
 import styles from './CreateIncident.module.css';
 
@@ -44,7 +44,7 @@ function CreateIncident() {
   const [savingDraft, setSavingDraft] = useState(false);
 
   const { data: options, loading, error, refetch } = useAsyncData(
-    () => createIncidentService.getFormOptions(),
+    () => incidentService.getFormOptions(),
     []
   );
 
@@ -59,7 +59,7 @@ function CreateIncident() {
   const description = watch('description');
 
   const aiSuggestion = useMemo(
-    () => createIncidentService.getAiSuggestion(description),
+    () => incidentService.getAiSuggestion(description),
     [description]
   );
 
@@ -72,7 +72,7 @@ function CreateIncident() {
   const onSubmit = async (formData) => {
     setSubmitting(true);
     try {
-      const result = await createIncidentService.submitIncident({
+      const result = await incidentService.submitIncident({
         ...formData,
         attachments: attachments.map((f) => f.name),
       });
@@ -89,7 +89,7 @@ function CreateIncident() {
     setSavingDraft(true);
     try {
       const formData = watch();
-      await createIncidentService.saveDraft({
+      await incidentService.saveDraft({
         ...formData,
         attachments: attachments.map((f) => f.name),
       });

@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { PageHeader, GlassCard, ErrorState, SkeletonLoader, IncidentTimeline } from '@/components/common';
 import { normalizeIncidentTimelineEvents } from '@/utils/timeline';
 import { useAsyncData } from '@/hooks';
-import { incidentDetailService } from './incidentDetailService';
+import { incidentService } from '@/services/incidentService';
 import {
   IncidentDetailHeader,
   IncidentSummary,
@@ -38,7 +38,7 @@ function IncidentDetail() {
   const [localResolution, setLocalResolution] = useState(null);
 
   const { data: incident, loading, error, refetch } = useAsyncData(
-    () => incidentDetailService.getIncidentById(id),
+    () => incidentService.getIncidentById(id),
     [id]
   );
 

@@ -12,7 +12,7 @@ import {
 } from '@/components/common';
 import { useAsyncData, useDebounce, useMediaQuery } from '@/hooks';
 import { BREAKPOINTS } from '@/utils/constants';
-import { repeatIncidentService } from './repeatIncidentService';
+import { incidentService } from '@/services/incidentService';
 import {
   AiRecommendationBanner,
   CurrentIncidentSummary,
@@ -25,7 +25,7 @@ import styles from './RepeatIncidentDetection.module.css';
 
 function RepeatIncidentDetection() {
   const { data, loading, error, refetch } = useAsyncData(
-    () => repeatIncidentService.getPageData(),
+    () => incidentService.getRepeatDetectionPageData(),
     []
   );
 
@@ -43,7 +43,7 @@ function RepeatIncidentDetection() {
   const filteredIncidents = useMemo(() => {
     if (!data) return [];
 
-    const filtered = repeatIncidentService.filterSimilarIncidents(
+    const filtered = incidentService.filterSimilarIncidents(
       data.similarIncidents,
       {
         search: debouncedSearch,
@@ -52,7 +52,7 @@ function RepeatIncidentDetection() {
       }
     );
 
-    return repeatIncidentService.sortSimilarIncidents(filtered, sortKey, sortDirection);
+    return incidentService.sortSimilarIncidents(filtered, sortKey, sortDirection);
   }, [data, debouncedSearch, applicationFilter, statusFilter, sortKey, sortDirection]);
 
   const handleSort = useCallback((key) => {

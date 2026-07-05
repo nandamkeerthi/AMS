@@ -7,7 +7,7 @@ import {
   EmptyState,
 } from '@/components/common';
 import { useAsyncData } from '@/hooks';
-import { analyticsService } from './analyticsService';
+import { analyticsService } from '@/services/analyticsService';
 import { AnalyticsToolbar, ChartCard } from './components';
 import {
   IncidentTrendLineChart,

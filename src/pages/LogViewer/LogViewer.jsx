@@ -7,13 +7,13 @@ import {
   SkeletonLoader,
 } from '@/components/common';
 import { useAsyncData } from '@/hooks';
-import { logViewerService } from './logViewerService';
+import { incidentService } from '@/services/incidentService';
 import { LogCodeViewer, LogViewerToolbar } from './components';
 import styles from './LogViewer.module.css';
 
 function LogViewer() {
   const { data, loading, error, refetch } = useAsyncData(
-    () => logViewerService.getPageData(),
+    () => incidentService.getLogViewerPageData(),
     []
   );
 
@@ -23,12 +23,12 @@ function LogViewer() {
   const allLines = useMemo(() => data?.lines ?? [], [data?.lines]);
 
   const filteredLines = useMemo(
-    () => logViewerService.filterLines(allLines, { level: levelFilter, search }),
+    () => incidentService.filterLines(allLines, { level: levelFilter, search }),
     [allLines, levelFilter, search]
   );
 
   const matchCount = useMemo(
-    () => logViewerService.countMatches(filteredLines, search),
+    () => incidentService.countMatches(filteredLines, search),
     [filteredLines, search]
   );
 
@@ -38,7 +38,7 @@ function LogViewer() {
       return;
     }
 
-    const content = logViewerService.buildExportContent(filteredLines);
+    const content = incidentService.buildExportContent(filteredLines);
 
     try {
       await navigator.clipboard.writeText(content);
@@ -54,9 +54,9 @@ function LogViewer() {
       return;
     }
 
-    const content = logViewerService.buildExportContent(filteredLines);
+    const content = incidentService.buildExportContent(filteredLines);
     const fileName = data?.pageConfig.fileName || 'application.log';
-    logViewerService.triggerDownload(content, fileName);
+    incidentService.triggerDownload(content, fileName);
     toast.success('Log file downloaded');
   }, [filteredLines, data?.pageConfig.fileName]);
 
