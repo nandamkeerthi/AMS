@@ -1,4 +1,10 @@
 {
+  "lastUpdated": "2024-07-05T09:30:00Z",
+  "alertBanner": {
+    "severity": "critical",
+    "message": "2 critical incidents require immediate attention",
+    "count": 2
+  },
   "stats": [
     {
       "id": "open-incidents",
@@ -7,7 +13,8 @@
       "change": 12,
       "changeType": "increase",
       "icon": "incidents",
-      "color": "error"
+      "color": "error",
+      "linkLabel": "View all open"
     },
     {
       "id": "sla-compliance",
@@ -16,16 +23,18 @@
       "change": 2.1,
       "changeType": "increase",
       "icon": "sla",
-      "color": "success"
+      "color": "success",
+      "linkLabel": "View SLA report"
     },
     {
       "id": "avg-resolution",
-      "title": "Avg Resolution Time",
+      "title": "Mean Time to Resolve",
       "value": "4.2h",
       "change": 8,
       "changeType": "decrease",
       "icon": "time",
-      "color": "primary"
+      "color": "primary",
+      "linkLabel": "View trends"
     },
     {
       "id": "ai-resolved",
@@ -34,8 +43,23 @@
       "change": 24,
       "changeType": "increase",
       "icon": "ai",
-      "color": "warning"
+      "color": "warning",
+      "linkLabel": "View AI activity"
     }
+  ],
+  "quickActions": [
+    { "id": "create-incident", "label": "Create incident", "icon": "incidents" },
+    { "id": "service-request", "label": "New service request", "icon": "tickets" },
+    { "id": "runbook", "label": "Run runbook", "icon": "knowledge" },
+    { "id": "ask-ai", "label": "Ask AI assistant", "icon": "ai" },
+    { "id": "view-alerts", "label": "View alerts", "icon": "analytics" }
+  ],
+  "serviceHealth": [
+    { "id": "core-banking", "name": "Core Banking API", "status": "degraded", "incidents": 2 },
+    { "id": "customer-portal", "name": "Customer Portal", "status": "healthy", "incidents": 0 },
+    { "id": "payment-gateway", "name": "Payment Gateway", "status": "healthy", "incidents": 0 },
+    { "id": "identity-service", "name": "Identity Service", "status": "degraded", "incidents": 1 },
+    { "id": "data-pipeline", "name": "Data Pipeline", "status": "healthy", "incidents": 0 }
   ],
   "incidentTrend": [
     { "date": "Mon", "open": 32, "resolved": 28, "critical": 4 },
@@ -110,7 +134,7 @@
       "id": "insight-1",
       "type": "prediction",
       "title": "Predicted capacity issue",
-      "description": "Based on current trends, the Core Banking API may hit capacity limits within 48 hours.",
+      "description": "Core Banking API may hit capacity limits within 48 hours based on current traffic trends.",
       "confidence": 87,
       "action": "Review scaling policies"
     },
@@ -118,7 +142,7 @@
       "id": "insight-2",
       "type": "recommendation",
       "title": "Root cause identified",
-      "description": "INC-2024-1847 likely caused by recent deployment v2.4.1. Rollback recommended.",
+      "description": "INC-2024-1847 likely caused by deployment v2.4.1. Rollback is recommended.",
       "confidence": 92,
       "action": "Initiate rollback"
     },
