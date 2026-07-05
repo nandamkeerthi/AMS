@@ -1,0 +1,189 @@
+{
+  "pageConfig": {
+    "title": "Knowledge Search",
+    "subtitle": "Search runbooks, troubleshooting guides, and documentation across your applications"
+  },
+  "categories": [
+    { "id": "all", "label": "All categories", "count": 48 },
+    { "id": "runbook", "label": "Runbooks", "count": 18 },
+    { "id": "troubleshooting", "label": "Troubleshooting", "count": 14 },
+    { "id": "best-practice", "label": "Best Practices", "count": 9 },
+    { "id": "architecture", "label": "Architecture", "count": 7 }
+  ],
+  "filterOptions": {
+    "categories": [
+      { "value": "all", "label": "All categories" },
+      { "value": "Runbook", "label": "Runbook" },
+      { "value": "Troubleshooting", "label": "Troubleshooting" },
+      { "value": "Best Practice", "label": "Best Practice" },
+      { "value": "Architecture", "label": "Architecture" }
+    ],
+    "applications": [
+      { "value": "all", "label": "All applications" },
+      { "value": "Customer Portal API", "label": "Customer Portal API" },
+      { "value": "Core Banking Service", "label": "Core Banking Service" },
+      { "value": "Payment Gateway", "label": "Payment Gateway" },
+      { "value": "Identity Service", "label": "Identity Service" },
+      { "value": "Data Pipeline", "label": "Data Pipeline" }
+    ],
+    "tags": [
+      { "value": "all", "label": "All tags" },
+      { "value": "api-gateway", "label": "api-gateway" },
+      { "value": "connection-pool", "label": "connection-pool" },
+      { "value": "deployment", "label": "deployment" },
+      { "value": "rollback", "label": "rollback" },
+      { "value": "database", "label": "database" },
+      { "value": "monitoring", "label": "monitoring" },
+      { "value": "security", "label": "security" }
+    ]
+  },
+  "aiSuggestedIds": ["KB-1042", "KB-0891", "KB-0756"],
+  "recentIds": ["KB-1102", "KB-1042", "KB-0987", "KB-0612"],
+  "popularIds": ["KB-0756", "KB-0891", "KB-1042", "KB-0420", "KB-0331"],
+  "articles": [
+    {
+      "id": "KB-1042",
+      "title": "API Gateway timeout troubleshooting guide",
+      "category": "Troubleshooting",
+      "application": "Customer Portal API",
+      "shortDescription": "Step-by-step diagnosis for upstream timeout, 502/504 errors, and gateway health checks.",
+      "tags": ["api-gateway", "timeout", "502", "upstream"],
+      "author": "Sarah Chen",
+      "lastUpdated": "2024-06-28T14:30:00Z",
+      "viewCount": 2847,
+      "aiRelevanceScore": 95
+    },
+    {
+      "id": "KB-0891",
+      "title": "Deployment rollback procedure — Core Banking",
+      "category": "Runbook",
+      "application": "Core Banking Service",
+      "shortDescription": "Approved rollback workflow for core-banking-svc production deployments including validation gates.",
+      "tags": ["deployment", "rollback", "core-banking"],
+      "author": "Marcus Johnson",
+      "lastUpdated": "2024-06-15T09:00:00Z",
+      "viewCount": 1923,
+      "aiRelevanceScore": 91
+    },
+    {
+      "id": "KB-0756",
+      "title": "Connection pool tuning runbook",
+      "category": "Best Practice",
+      "application": "Core Banking Service",
+      "shortDescription": "HikariCP sizing guidelines, pool exhaustion remediation, and monitoring thresholds.",
+      "tags": ["connection-pool", "database", "hikari", "performance"],
+      "author": "Sarah Chen",
+      "lastUpdated": "2024-05-20T11:45:00Z",
+      "viewCount": 3412,
+      "aiRelevanceScore": 84
+    },
+    {
+      "id": "KB-1102",
+      "title": "Incident communication templates",
+      "category": "Best Practice",
+      "application": "Customer Portal API",
+      "shortDescription": "Standard templates for stakeholder updates during P1/P2 incidents and post-mortems.",
+      "tags": ["incident-management", "communication"],
+      "author": "Jane Doe",
+      "lastUpdated": "2024-07-04T16:20:00Z",
+      "viewCount": 456,
+      "aiRelevanceScore": 62
+    },
+    {
+      "id": "KB-0987",
+      "title": "Database connection pool tuning runbook",
+      "category": "Runbook",
+      "application": "Customer Portal API",
+      "shortDescription": "Procedures for diagnosing and resolving database connection pool saturation in production.",
+      "tags": ["database", "connection-pool", "customer-portal"],
+      "author": "Marcus Johnson",
+      "lastUpdated": "2024-07-02T08:15:00Z",
+      "viewCount": 892,
+      "aiRelevanceScore": 78
+    },
+    {
+      "id": "KB-0612",
+      "title": "Regional failover activation guide",
+      "category": "Runbook",
+      "application": "Customer Portal API",
+      "shortDescription": "Traffic routing procedures for primary region degradation and DR failover validation.",
+      "tags": ["failover", "dr", "routing", "deployment"],
+      "author": "Alex Rivera",
+      "lastUpdated": "2024-06-01T13:00:00Z",
+      "viewCount": 1104,
+      "aiRelevanceScore": 79
+    },
+    {
+      "id": "KB-0420",
+      "title": "Kubernetes pod health check configuration",
+      "category": "Architecture",
+      "application": "Core Banking Service",
+      "shortDescription": "Liveness and readiness probe best practices for microservices on AKS.",
+      "tags": ["kubernetes", "health-check", "aks"],
+      "author": "Priya Sharma",
+      "lastUpdated": "2024-04-18T10:30:00Z",
+      "viewCount": 2156,
+      "aiRelevanceScore": 55
+    },
+    {
+      "id": "KB-0331",
+      "title": "OAuth token validation troubleshooting",
+      "category": "Troubleshooting",
+      "application": "Identity Service",
+      "shortDescription": "Common causes of token validation failures and JWT middleware debugging steps.",
+      "tags": ["security", "oauth", "jwt", "identity"],
+      "author": "Alex Rivera",
+      "lastUpdated": "2024-03-22T15:45:00Z",
+      "viewCount": 1678,
+      "aiRelevanceScore": 48
+    },
+    {
+      "id": "KB-0288",
+      "title": "Payment gateway circuit breaker setup",
+      "category": "Architecture",
+      "application": "Payment Gateway",
+      "shortDescription": "Configure circuit breakers and bulkheads for payment processing dependencies.",
+      "tags": ["payment-gateway", "circuit-breaker", "resilience"],
+      "author": "Marcus Johnson",
+      "lastUpdated": "2024-02-10T09:20:00Z",
+      "viewCount": 734,
+      "aiRelevanceScore": 52
+    },
+    {
+      "id": "KB-0195",
+      "title": "Log aggregation and search best practices",
+      "category": "Best Practice",
+      "application": "Data Pipeline",
+      "shortDescription": "Structured logging standards, correlation IDs, and centralized log search patterns.",
+      "tags": ["monitoring", "logging", "observability"],
+      "author": "Jane Doe",
+      "lastUpdated": "2024-01-15T12:00:00Z",
+      "viewCount": 989,
+      "aiRelevanceScore": 65
+    },
+    {
+      "id": "KB-0156",
+      "title": "Canary deployment checklist",
+      "category": "Runbook",
+      "application": "Customer Portal API",
+      "shortDescription": "Pre-promotion validation checklist for canary deployments including metric gates.",
+      "tags": ["deployment", "canary", "release"],
+      "author": "Sarah Chen",
+      "lastUpdated": "2024-06-10T17:30:00Z",
+      "viewCount": 1245,
+      "aiRelevanceScore": 72
+    },
+    {
+      "id": "KB-0102",
+      "title": "SQL query timeout enforcement",
+      "category": "Troubleshooting",
+      "application": "Core Banking Service",
+      "shortDescription": "Identify and terminate long-running queries blocking connection pool resources.",
+      "tags": ["database", "connection-pool", "sql"],
+      "author": "Marcus Johnson",
+      "lastUpdated": "2024-05-05T14:10:00Z",
+      "viewCount": 876,
+      "aiRelevanceScore": 70
+    }
+  ]
+}
