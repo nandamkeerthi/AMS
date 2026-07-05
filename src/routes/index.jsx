@@ -9,6 +9,7 @@ import LogViewer from '@/pages/LogViewer';
 import AiAnalysis from '@/pages/AiAnalysis';
 import RepeatIncidentDetection from '@/pages/RepeatIncidentDetection';
 import KnowledgeSearch from '@/pages/KnowledgeSearch';
+import KnowledgeArticle from '@/pages/KnowledgeArticle';
 import Placeholder from '@/pages/Placeholder';
 import NotFound from '@/pages/NotFound';
 
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: 'knowledge',
         element: <KnowledgeSearch />,
+      },
+      {
+        path: 'knowledge/:id',
+        element: <KnowledgeArticle />,
       },
       {
         path: 'ai-assistant',
