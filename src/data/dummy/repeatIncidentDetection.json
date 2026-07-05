@@ -1,0 +1,142 @@
+{
+  "pageConfig": {
+    "title": "Repeat Incident Detection",
+    "subtitle": "Identify historically similar incidents and leverage previous resolutions to accelerate remediation"
+  },
+  "aiRecommendation": {
+    "title": "High probability repeat incident detected",
+    "message": "This incident closely matches INC-2024-1720 (94% similarity). The previous resolution — rollback to v2.4.0 and connection pool increase — resolved the issue in 2h 15m. Consider applying the same runbook before exploring alternative fixes.",
+    "confidence": 87,
+    "actionLabel": "View recommended runbook",
+    "runbookId": "KB-0891"
+  },
+  "currentIncident": {
+    "id": "INC-2024-1847",
+    "title": "Production API Gateway timeout errors",
+    "description": "Elevated 502/504 errors on API Gateway affecting customer account endpoints. Error rate spiked to 18% within 30 minutes of deployment v2.4.1.",
+    "application": "Customer Portal API",
+    "environment": "Production",
+    "priority": "critical",
+    "status": "in_progress",
+    "assignee": "Sarah Chen",
+    "createdAt": "2024-07-05T08:15:00Z",
+    "rootCause": "Deployment v2.4.1 reduced connection pool maximum from 500 to 200, causing upstream exhaustion under peak load.",
+    "businessImpact": "Customer account summary and transaction APIs degraded. Estimated 12,400 users affected."
+  },
+  "filterOptions": {
+    "applications": [
+      { "value": "all", "label": "All applications" },
+      { "value": "Customer Portal API", "label": "Customer Portal API" },
+      { "value": "Core Banking Service", "label": "Core Banking Service" },
+      { "value": "Payment Gateway", "label": "Payment Gateway" },
+      { "value": "Identity Service", "label": "Identity Service" }
+    ],
+    "statuses": [
+      { "value": "all", "label": "All statuses" },
+      { "value": "open", "label": "Open" },
+      { "value": "in_progress", "label": "In Progress" },
+      { "value": "resolved", "label": "Resolved" },
+      { "value": "closed", "label": "Closed" }
+    ]
+  },
+  "similarIncidents": [
+    {
+      "id": "INC-2024-1720",
+      "title": "API gateway timeout after deployment",
+      "application": "Customer Portal API",
+      "status": "resolved",
+      "priority": "critical",
+      "similarity": 94,
+      "rootCause": "Connection pool exhaustion introduced by deployment v2.3.8 configuration regression",
+      "previousResolution": "Rollback to v2.4.0 and increased HikariCP maxPoolSize from 200 to 400",
+      "resolutionTime": "2h 15m",
+      "resolvedAt": "2024-06-18T14:30:00Z",
+      "assignee": "Sarah Chen",
+      "matchingSignals": ["connection pool exhaustion", "post-deployment regression", "502/504 gateway errors", "core-banking-svc upstream"]
+    },
+    {
+      "id": "INC-2024-1654",
+      "title": "Upstream timeout on account endpoints",
+      "application": "Customer Portal API",
+      "status": "resolved",
+      "priority": "high",
+      "similarity": 88,
+      "rootCause": "Database connection pool saturation during peak traffic window",
+      "previousResolution": "Scaled connection pool to 400 and enabled read replica routing for analytics queries",
+      "resolutionTime": "3h 40m",
+      "resolvedAt": "2024-05-22T11:20:00Z",
+      "assignee": "Marcus Johnson",
+      "matchingSignals": ["upstream timeout", "connection pool", "account endpoints", "peak traffic"]
+    },
+    {
+      "id": "INC-2024-1589",
+      "title": "Core banking service connection pool exhaustion",
+      "application": "Core Banking Service",
+      "status": "resolved",
+      "priority": "critical",
+      "similarity": 82,
+      "rootCause": "HikariCP pool size misconfiguration after environment promotion",
+      "previousResolution": "Reverted pool configuration and terminated long-running queries exceeding 5 minutes",
+      "resolutionTime": "1h 55m",
+      "resolvedAt": "2024-04-30T16:45:00Z",
+      "assignee": "Sarah Chen",
+      "matchingSignals": ["HikariCP", "connection pool exhaustion", "configuration change"]
+    },
+    {
+      "id": "INC-2024-1846",
+      "title": "Database connection pool exhaustion",
+      "application": "Customer Portal API",
+      "status": "open",
+      "priority": "high",
+      "similarity": 76,
+      "rootCause": "Long-running analytics queries holding database connections",
+      "previousResolution": null,
+      "resolutionTime": null,
+      "resolvedAt": null,
+      "assignee": "Marcus Johnson",
+      "matchingSignals": ["connection pool", "database", "customer portal"]
+    },
+    {
+      "id": "INC-2024-1492",
+      "title": "502 errors after canary deployment",
+      "application": "Customer Portal API",
+      "status": "closed",
+      "priority": "critical",
+      "similarity": 71,
+      "rootCause": "Canary deployment promoted before health checks stabilized",
+      "previousResolution": "Rolled back canary deployment and extended health check stabilization window to 15 minutes",
+      "resolutionTime": "4h 10m",
+      "resolvedAt": "2024-03-14T09:30:00Z",
+      "assignee": "Jane Doe",
+      "matchingSignals": ["502 errors", "deployment", "canary promotion"]
+    },
+    {
+      "id": "INC-2024-1410",
+      "title": "Payment gateway upstream latency spike",
+      "application": "Payment Gateway",
+      "status": "resolved",
+      "priority": "medium",
+      "similarity": 58,
+      "rootCause": "Dependency on degraded core-banking-svc caused cascading latency",
+      "previousResolution": "Enabled circuit breaker and routed payments through secondary region",
+      "resolutionTime": "5h 20m",
+      "resolvedAt": "2024-02-28T18:00:00Z",
+      "assignee": "Alex Rivera",
+      "matchingSignals": ["upstream latency", "cascade failure", "core-banking dependency"]
+    },
+    {
+      "id": "INC-2024-1335",
+      "title": "Identity service token validation delays",
+      "application": "Identity Service",
+      "status": "resolved",
+      "priority": "low",
+      "similarity": 42,
+      "rootCause": "Redis cache eviction causing repeated database lookups",
+      "previousResolution": "Increased Redis memory allocation and tuned cache TTL policies",
+      "resolutionTime": "6h 30m",
+      "resolvedAt": "2024-01-19T12:15:00Z",
+      "assignee": "Priya Sharma",
+      "matchingSignals": ["latency spike", "cache eviction"]
+    }
+  ]
+}
