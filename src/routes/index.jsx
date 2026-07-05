@@ -12,6 +12,7 @@ import KnowledgeSearch from '@/pages/KnowledgeSearch';
 import KnowledgeArticle from '@/pages/KnowledgeArticle';
 import CreateKnowledgeArticle from '@/pages/CreateKnowledgeArticle';
 import AiAssistant from '@/pages/AiAssistant';
+import Analytics from '@/pages/Analytics';
 import Placeholder from '@/pages/Placeholder';
 import NotFound from '@/pages/NotFound';
 
@@ -85,13 +86,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'analytics',
-        element: (
-          <Placeholder
-            title="Analytics"
-            description="Performance metrics and reporting"
-            iconKey="analytics"
-          />
-        ),
+        element: <Analytics />,
       },
       {
         path: 'settings',

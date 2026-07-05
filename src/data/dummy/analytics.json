@@ -1,0 +1,266 @@
+{
+  "pageConfig": {
+    "title": "Analytics",
+    "subtitle": "Incident metrics, AI performance, and operational trends across your applications"
+  },
+  "filterOptions": {
+    "dateRanges": [
+      { "value": "7d", "label": "Last 7 days" },
+      { "value": "30d", "label": "Last 30 days" },
+      { "value": "90d", "label": "Last 90 days" },
+      { "value": "12m", "label": "Last 12 months" }
+    ],
+    "applications": [
+      { "value": "all", "label": "All applications" },
+      { "value": "Customer Portal API", "label": "Customer Portal API" },
+      { "value": "Core Banking Service", "label": "Core Banking Service" },
+      { "value": "Payment Gateway", "label": "Payment Gateway" },
+      { "value": "Identity Service", "label": "Identity Service" },
+      { "value": "Data Pipeline", "label": "Data Pipeline" }
+    ]
+  },
+  "datasets": {
+    "7d": {
+      "incidentTrend": [
+        { "label": "Mon", "incidents": 32, "critical": 4 },
+        { "label": "Tue", "incidents": 38, "critical": 6 },
+        { "label": "Wed", "incidents": 42, "critical": 3 },
+        { "label": "Thu", "incidents": 35, "critical": 5 },
+        { "label": "Fri", "incidents": 47, "critical": 7 },
+        { "label": "Sat", "incidents": 28, "critical": 2 },
+        { "label": "Sun", "incidents": 22, "critical": 1 }
+      ],
+      "resolutionTime": [
+        { "label": "Critical", "hours": 2.4 },
+        { "label": "High", "hours": 4.8 },
+        { "label": "Medium", "hours": 8.2 },
+        { "label": "Low", "hours": 16.5 }
+      ],
+      "statusDistribution": [
+        { "name": "Open", "value": 47, "color": "#2563EB" },
+        { "name": "In Progress", "value": 32, "color": "#F59E0B" },
+        { "name": "Resolved", "value": 128, "color": "#10B981" },
+        { "name": "Closed", "value": 89, "color": "#64748B" }
+      ],
+      "aiAccuracy": [
+        { "label": "Mon", "accuracy": 88, "recommendations": 24 },
+        { "label": "Tue", "accuracy": 91, "recommendations": 31 },
+        { "label": "Wed", "accuracy": 89, "recommendations": 28 },
+        { "label": "Thu", "accuracy": 93, "recommendations": 35 },
+        { "label": "Fri", "accuracy": 92, "recommendations": 42 },
+        { "label": "Sat", "accuracy": 90, "recommendations": 18 },
+        { "label": "Sun", "accuracy": 94, "recommendations": 15 }
+      ],
+      "repeatIncidentTrend": [
+        { "label": "Mon", "repeat": 5, "total": 32 },
+        { "label": "Tue", "repeat": 7, "total": 38 },
+        { "label": "Wed", "repeat": 4, "total": 42 },
+        { "label": "Thu", "repeat": 8, "total": 35 },
+        { "label": "Fri", "repeat": 11, "total": 47 },
+        { "label": "Sat", "repeat": 3, "total": 28 },
+        { "label": "Sun", "repeat": 2, "total": 22 }
+      ],
+      "knowledgeGrowth": [
+        { "label": "Mon", "articles": 142, "new": 2 },
+        { "label": "Tue", "articles": 145, "new": 3 },
+        { "label": "Wed", "articles": 147, "new": 2 },
+        { "label": "Thu", "articles": 151, "new": 4 },
+        { "label": "Fri", "articles": 154, "new": 3 },
+        { "label": "Sat", "articles": 155, "new": 1 },
+        { "label": "Sun", "articles": 156, "new": 1 }
+      ],
+      "topApplications": [
+        { "name": "Customer Portal API", "incidents": 47 },
+        { "name": "Core Banking Service", "incidents": 38 },
+        { "name": "Payment Gateway", "incidents": 22 },
+        { "name": "Identity Service", "incidents": 18 },
+        { "name": "Data Pipeline", "incidents": 12 }
+      ],
+      "monthlySummary": [
+        { "month": "Jan", "opened": 124, "resolved": 118, "critical": 18 },
+        { "month": "Feb", "opened": 132, "resolved": 128, "critical": 21 },
+        { "month": "Mar", "opened": 118, "resolved": 115, "critical": 15 },
+        { "month": "Apr", "opened": 145, "resolved": 140, "critical": 24 },
+        { "month": "May", "opened": 138, "resolved": 135, "critical": 19 },
+        { "month": "Jun", "opened": 152, "resolved": 148, "critical": 22 }
+      ]
+    },
+    "30d": {
+      "incidentTrend": [
+        { "label": "Week 1", "incidents": 168, "critical": 22 },
+        { "label": "Week 2", "incidents": 182, "critical": 28 },
+        { "label": "Week 3", "incidents": 195, "critical": 24 },
+        { "label": "Week 4", "incidents": 178, "critical": 31 }
+      ],
+      "resolutionTime": [
+        { "label": "Critical", "hours": 2.8 },
+        { "label": "High", "hours": 5.2 },
+        { "label": "Medium", "hours": 9.1 },
+        { "label": "Low", "hours": 18.3 }
+      ],
+      "statusDistribution": [
+        { "name": "Open", "value": 52, "color": "#2563EB" },
+        { "name": "In Progress", "value": 38, "color": "#F59E0B" },
+        { "name": "Resolved", "value": 412, "color": "#10B981" },
+        { "name": "Closed", "value": 298, "color": "#64748B" }
+      ],
+      "aiAccuracy": [
+        { "label": "Week 1", "accuracy": 89, "recommendations": 98 },
+        { "label": "Week 2", "accuracy": 91, "recommendations": 112 },
+        { "label": "Week 3", "accuracy": 90, "recommendations": 105 },
+        { "label": "Week 4", "accuracy": 93, "recommendations": 124 }
+      ],
+      "repeatIncidentTrend": [
+        { "label": "Week 1", "repeat": 28, "total": 168 },
+        { "label": "Week 2", "repeat": 34, "total": 182 },
+        { "label": "Week 3", "repeat": 31, "total": 195 },
+        { "label": "Week 4", "repeat": 38, "total": 178 }
+      ],
+      "knowledgeGrowth": [
+        { "label": "Week 1", "articles": 128, "new": 8 },
+        { "label": "Week 2", "articles": 136, "new": 8 },
+        { "label": "Week 3", "articles": 145, "new": 9 },
+        { "label": "Week 4", "articles": 156, "new": 11 }
+      ],
+      "topApplications": [
+        { "name": "Customer Portal API", "incidents": 186 },
+        { "name": "Core Banking Service", "incidents": 152 },
+        { "name": "Payment Gateway", "incidents": 94 },
+        { "name": "Identity Service", "incidents": 72 },
+        { "name": "Data Pipeline", "incidents": 48 }
+      ],
+      "monthlySummary": [
+        { "month": "Jan", "opened": 124, "resolved": 118, "critical": 18 },
+        { "month": "Feb", "opened": 132, "resolved": 128, "critical": 21 },
+        { "month": "Mar", "opened": 118, "resolved": 115, "critical": 15 },
+        { "month": "Apr", "opened": 145, "resolved": 140, "critical": 24 },
+        { "month": "May", "opened": 138, "resolved": 135, "critical": 19 },
+        { "month": "Jun", "opened": 152, "resolved": 148, "critical": 22 }
+      ]
+    },
+    "90d": {
+      "incidentTrend": [
+        { "label": "Apr", "incidents": 520, "critical": 68 },
+        { "label": "May", "incidents": 548, "critical": 72 },
+        { "label": "Jun", "incidents": 512, "critical": 65 }
+      ],
+      "resolutionTime": [
+        { "label": "Critical", "hours": 3.1 },
+        { "label": "High", "hours": 5.8 },
+        { "label": "Medium", "hours": 10.2 },
+        { "label": "Low", "hours": 19.8 }
+      ],
+      "statusDistribution": [
+        { "name": "Open", "value": 58, "color": "#2563EB" },
+        { "name": "In Progress", "value": 42, "color": "#F59E0B" },
+        { "name": "Resolved", "value": 1180, "color": "#10B981" },
+        { "name": "Closed", "value": 890, "color": "#64748B" }
+      ],
+      "aiAccuracy": [
+        { "label": "Apr", "accuracy": 88, "recommendations": 312 },
+        { "label": "May", "accuracy": 91, "recommendations": 348 },
+        { "label": "Jun", "accuracy": 92, "recommendations": 365 }
+      ],
+      "repeatIncidentTrend": [
+        { "label": "Apr", "repeat": 82, "total": 520 },
+        { "label": "May", "repeat": 91, "total": 548 },
+        { "label": "Jun", "repeat": 78, "total": 512 }
+      ],
+      "knowledgeGrowth": [
+        { "label": "Apr", "articles": 118, "new": 22 },
+        { "label": "May", "articles": 138, "new": 20 },
+        { "label": "Jun", "articles": 156, "new": 18 }
+      ],
+      "topApplications": [
+        { "name": "Customer Portal API", "incidents": 542 },
+        { "name": "Core Banking Service", "incidents": 428 },
+        { "name": "Payment Gateway", "incidents": 268 },
+        { "name": "Identity Service", "incidents": 198 },
+        { "name": "Data Pipeline", "incidents": 142 }
+      ],
+      "monthlySummary": [
+        { "month": "Jan", "opened": 124, "resolved": 118, "critical": 18 },
+        { "month": "Feb", "opened": 132, "resolved": 128, "critical": 21 },
+        { "month": "Mar", "opened": 118, "resolved": 115, "critical": 15 },
+        { "month": "Apr", "opened": 145, "resolved": 140, "critical": 24 },
+        { "month": "May", "opened": 138, "resolved": 135, "critical": 19 },
+        { "month": "Jun", "opened": 152, "resolved": 148, "critical": 22 },
+        { "month": "Jul", "opened": 98, "resolved": 92, "critical": 12 }
+      ]
+    },
+    "12m": {
+      "incidentTrend": [
+        { "label": "Aug", "incidents": 480, "critical": 58 },
+        { "label": "Sep", "incidents": 512, "critical": 62 },
+        { "label": "Oct", "incidents": 498, "critical": 55 },
+        { "label": "Nov", "incidents": 545, "critical": 68 },
+        { "label": "Dec", "incidents": 520, "critical": 61 },
+        { "label": "Jan", "incidents": 558, "critical": 72 },
+        { "label": "Feb", "incidents": 532, "critical": 65 },
+        { "label": "Mar", "incidents": 510, "critical": 58 },
+        { "label": "Apr", "incidents": 548, "critical": 70 },
+        { "label": "May", "incidents": 562, "critical": 74 },
+        { "label": "Jun", "incidents": 538, "critical": 66 },
+        { "label": "Jul", "incidents": 245, "critical": 28 }
+      ],
+      "resolutionTime": [
+        { "label": "Critical", "hours": 3.4 },
+        { "label": "High", "hours": 6.1 },
+        { "label": "Medium", "hours": 11.5 },
+        { "label": "Low", "hours": 21.2 }
+      ],
+      "statusDistribution": [
+        { "name": "Open", "value": 62, "color": "#2563EB" },
+        { "name": "In Progress", "value": 48, "color": "#F59E0B" },
+        { "name": "Resolved", "value": 4820, "color": "#10B981" },
+        { "name": "Closed", "value": 3640, "color": "#64748B" }
+      ],
+      "aiAccuracy": [
+        { "label": "Q3", "accuracy": 87, "recommendations": 890 },
+        { "label": "Q4", "accuracy": 89, "recommendations": 945 },
+        { "label": "Q1", "accuracy": 91, "recommendations": 1020 },
+        { "label": "Q2", "accuracy": 92, "recommendations": 1085 }
+      ],
+      "repeatIncidentTrend": [
+        { "label": "Q3", "repeat": 245, "total": 1490 },
+        { "label": "Q4", "repeat": 268, "total": 1585 },
+        { "label": "Q1", "repeat": 252, "total": 1600 },
+        { "label": "Q2", "repeat": 278, "total": 1648 }
+      ],
+      "knowledgeGrowth": [
+        { "label": "Q3", "articles": 98, "new": 28 },
+        { "label": "Q4", "articles": 118, "new": 20 },
+        { "label": "Q1", "articles": 138, "new": 20 },
+        { "label": "Q2", "articles": 156, "new": 18 }
+      ],
+      "topApplications": [
+        { "name": "Customer Portal API", "incidents": 2148 },
+        { "name": "Core Banking Service", "incidents": 1724 },
+        { "name": "Payment Gateway", "incidents": 1082 },
+        { "name": "Identity Service", "incidents": 798 },
+        { "name": "Data Pipeline", "incidents": 568 }
+      ],
+      "monthlySummary": [
+        { "month": "Aug", "opened": 118, "resolved": 112, "critical": 16 },
+        { "month": "Sep", "opened": 125, "resolved": 120, "critical": 18 },
+        { "month": "Oct", "opened": 122, "resolved": 118, "critical": 15 },
+        { "month": "Nov", "opened": 138, "resolved": 132, "critical": 22 },
+        { "month": "Dec", "opened": 130, "resolved": 128, "critical": 17 },
+        { "month": "Jan", "opened": 124, "resolved": 118, "critical": 18 },
+        { "month": "Feb", "opened": 132, "resolved": 128, "critical": 21 },
+        { "month": "Mar", "opened": 118, "resolved": 115, "critical": 15 },
+        { "month": "Apr", "opened": 145, "resolved": 140, "critical": 24 },
+        { "month": "May", "opened": 138, "resolved": 135, "critical": 19 },
+        { "month": "Jun", "opened": 152, "resolved": 148, "critical": 22 },
+        { "month": "Jul", "opened": 98, "resolved": 92, "critical": 12 }
+      ]
+    }
+  },
+  "applicationScales": {
+    "Customer Portal API": 1,
+    "Core Banking Service": 0.82,
+    "Payment Gateway": 0.48,
+    "Identity Service": 0.38,
+    "Data Pipeline": 0.26
+  }
+}
