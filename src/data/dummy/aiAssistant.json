@@ -1,0 +1,128 @@
+{
+  "pageConfig": {
+    "title": "AI Assistant",
+    "subtitle": "AI-powered troubleshooting, incident analysis, and remediation guidance"
+  },
+  "incidentContext": {
+    "id": "INC-2024-1847",
+    "title": "Production API Gateway timeout errors",
+    "status": "in_progress",
+    "priority": "critical",
+    "application": "Customer Portal API",
+    "assignee": "Sarah Chen",
+    "createdAt": "2024-07-05T08:15:00Z",
+    "summary": "Elevated 502/504 errors on API Gateway. Error rate at 18% following deployment v2.4.1."
+  },
+  "suggestedQuestions": [
+    "What is the likely root cause of this incident?",
+    "Recommend a rollback procedure for v2.4.1",
+    "Show connection pool metrics to investigate",
+    "Find similar incidents from the last 90 days",
+    "Summarize the last 30 minutes of gateway logs",
+    "What runbooks apply to this incident?"
+  ],
+  "suggestedActions": [
+    {
+      "id": "act-1",
+      "label": "Run AI root cause analysis",
+      "prompt": "Run a full root cause analysis for INC-2024-1847"
+    },
+    {
+      "id": "act-2",
+      "label": "Generate rollback plan",
+      "prompt": "Generate a step-by-step rollback plan for deployment v2.4.1"
+    },
+    {
+      "id": "act-3",
+      "label": "Draft stakeholder update",
+      "prompt": "Draft a stakeholder status update for this incident"
+    },
+    {
+      "id": "act-4",
+      "label": "Search related runbooks",
+      "prompt": "Find knowledge articles related to API gateway timeouts"
+    }
+  ],
+  "relatedKnowledgeArticles": [
+    { "id": "KB-1042", "title": "API Gateway timeout troubleshooting guide", "relevance": 95 },
+    { "id": "KB-0891", "title": "Deployment rollback procedure — Core Banking", "relevance": 91 },
+    { "id": "KB-0756", "title": "Connection pool tuning runbook", "relevance": 84 }
+  ],
+  "conversationHistory": [
+    {
+      "id": "conv-1",
+      "title": "Gateway timeout investigation",
+      "preview": "Root cause analysis for INC-2024-1847...",
+      "timestamp": "2024-07-05T09:30:00Z",
+      "messageCount": 8
+    },
+    {
+      "id": "conv-2",
+      "title": "Connection pool exhaustion",
+      "preview": "HikariCP pool metrics and tuning options...",
+      "timestamp": "2024-07-05T08:45:00Z",
+      "messageCount": 5
+    },
+    {
+      "id": "conv-3",
+      "title": "Rollback procedure review",
+      "preview": "Steps to revert v2.4.1 deployment...",
+      "timestamp": "2024-07-04T16:20:00Z",
+      "messageCount": 12
+    }
+  ],
+  "welcomeMessage": {
+    "role": "assistant",
+    "content": "Hello! I'm your **AMS AI Assistant**. I can help you investigate incidents, analyze logs, recommend fixes, and find relevant runbooks.\n\nI'm currently connected to incident **INC-2024-1847**. Ask me anything or use a suggested prompt below to get started."
+  },
+  "responses": [
+    {
+      "keywords": ["root cause", "likely cause", "why"],
+      "content": "## Root Cause Analysis\n\nBased on incident **INC-2024-1847** and correlated signals, the likely root cause is:\n\n**Deployment v2.4.1** reduced HikariCP `maxPoolSize` from **500 → 200**, causing connection pool exhaustion under peak load.\n\n### Supporting evidence\n- Error spike within 30 minutes of v2.4.1 deployment\n- `Connection pool exhausted: 200/200` in core-banking-svc logs\n- Secondary region on v2.4.0 operating normally\n\n### Recommended next steps\n1. Review deployment changelog for pool config changes\n2. Execute rollback to v2.4.0 (see KB-0891)\n3. Monitor error rate for 15 minutes post-rollback\n\n**Confidence:** 92%"
+    },
+    {
+      "keywords": ["rollback", "revert", "v2.4.1"],
+      "content": "## Rollback Procedure\n\n```bash\nkubectl rollout undo deployment/core-banking-svc -n production\nkubectl rollout status deployment/core-banking-svc -n production\n```\n\n### Pre-rollback checklist\n- [ ] Team lead approval obtained\n- [ ] Secondary region confirmed healthy\n- [ ] Stakeholders notified\n\n### Post-rollback validation\n- Gateway 5xx error rate < 1%\n- P99 latency < 2 seconds\n- Connection pool utilization < 70%\n\nEstimated recovery time: **15–20 minutes**"
+    },
+    {
+      "keywords": ["connection pool", "metrics", "hikari"],
+      "content": "## Connection Pool Metrics\n\nRun these commands to inspect pool status:\n\n```bash\nkubectl exec -n production deploy/core-banking-svc -- \\\n  curl -s localhost:8080/actuator/metrics/hikaricp.connections.active\n```\n\n### Thresholds to watch\n| Metric | Warning | Critical |\n|--------|---------|----------|\n| Active connections | > 160 | ≥ 200 |\n| Waiting threads | > 10 | > 50 |\n| Acquire time P99 | > 1s | > 5s |\n\nCurrent observed: **200/200 active** — pool fully exhausted."
+    },
+    {
+      "keywords": ["similar", "repeat", "historical"],
+      "content": "## Similar Incidents\n\nFound **3 highly similar** incidents in the last 90 days:\n\n1. **INC-2024-1720** — API gateway timeout after deployment (94% similarity)\n   - Resolution: Rollback + pool increase\n   - Time to resolve: 2h 15m\n\n2. **INC-2024-1654** — Upstream timeout on account endpoints (88% similarity)\n   - Resolution: Pool scaled to 400 + read replica routing\n\n3. **INC-2024-1589** — Connection pool exhaustion (82% similarity)\n   - Resolution: Config revert + query termination\n\nWould you like me to compare any of these in detail?"
+    },
+    {
+      "keywords": ["log", "gateway", "summarize"],
+      "content": "## Gateway Log Summary (last 30 min)\n\n**Error breakdown:**\n- `502 Bad Gateway`: 847 occurrences\n- `504 Gateway Timeout`: 312 occurrences\n- `upstream timed out`: 1,159 occurrences\n\n**Top affected routes:**\n- `/api/v2/accounts/summary` — 62% of errors\n- `/api/v2/transactions/recent` — 24% of errors\n\n**Pattern:** Errors correlate with core-banking-svc connection pool saturation starting at 09:34 UTC."
+    },
+    {
+      "keywords": ["runbook", "knowledge", "kb"],
+      "content": "## Applicable Runbooks\n\n| Article | Relevance |\n|---------|----------|\n| KB-1042 — API Gateway timeout guide | 95% |\n| KB-0891 — Deployment rollback procedure | 91% |\n| KB-0756 — Connection pool tuning | 84% |\n| KB-0612 — Regional failover guide | 79% |\n\nI recommend starting with **KB-1042** for immediate troubleshooting steps."
+    },
+    {
+      "keywords": ["stakeholder", "update", "draft", "status"],
+      "content": "## Draft Stakeholder Update\n\n**Subject:** P1 Incident Update — API Gateway Timeouts (INC-2024-1847)\n\n**Status:** In Progress | **Impact:** ~12,400 users | **Started:** 08:15 UTC\n\nWe are experiencing elevated error rates on customer account APIs due to upstream connection pool exhaustion following deployment v2.4.1. Our team is executing a rollback to the last known stable version. We expect service restoration within **20 minutes**.\n\nNext update in 30 minutes or upon resolution."
+    },
+    {
+      "keywords": ["default"],
+      "content": "I can help with that. Based on incident **INC-2024-1847**, here are a few things I can do:\n\n- **Analyze root cause** from logs and deployment timeline\n- **Recommend fixes** including rollback and pool tuning\n- **Find similar incidents** and previous resolutions\n- **Search runbooks** and knowledge articles\n\nTry asking a more specific question, or select a suggested prompt below."
+    }
+  ],
+  "historyMessages": {
+    "conv-1": [
+      { "role": "user", "content": "What caused the gateway timeouts?" },
+      { "role": "assistant", "content": "Deployment v2.4.1 reduced connection pool size, causing exhaustion under peak load." },
+      { "role": "user", "content": "Should we rollback?" },
+      { "role": "assistant", "content": "Yes — rollback to v2.4.0 is recommended with 92% confidence based on similar incident INC-2024-1720." }
+    ],
+    "conv-2": [
+      { "role": "user", "content": "Show pool metrics" },
+      { "role": "assistant", "content": "Pool at 200/200 active connections. Waiting threads: 14." }
+    ],
+    "conv-3": [
+      { "role": "user", "content": "Walk me through the rollback" },
+      { "role": "assistant", "content": "1. Get approval 2. Run kubectl rollout undo 3. Validate metrics for 15 min." }
+    ]
+  }
+}

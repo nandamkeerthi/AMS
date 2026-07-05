@@ -1,0 +1,90 @@
+.message {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.user {
+  background: rgba(37, 99, 235, 0.04);
+}
+
+.assistant {
+  background: var(--color-surface);
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+
+.user .avatar {
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--color-primary);
+}
+
+.assistant .avatar {
+  background: rgba(124, 58, 237, 0.12);
+  color: #7c3aed;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: 4px;
+}
+
+.role {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.time {
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+}
+
+.content {
+  min-width: 0;
+}
+
+.userText {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.actions {
+  display: flex;
+  margin-top: var(--spacing-xs);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.message:hover .actions {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .message {
+    padding: var(--spacing-md);
+  }
+
+  .actions {
+    opacity: 1;
+  }
+}

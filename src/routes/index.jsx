@@ -11,6 +11,7 @@ import RepeatIncidentDetection from '@/pages/RepeatIncidentDetection';
 import KnowledgeSearch from '@/pages/KnowledgeSearch';
 import KnowledgeArticle from '@/pages/KnowledgeArticle';
 import CreateKnowledgeArticle from '@/pages/CreateKnowledgeArticle';
+import AiAssistant from '@/pages/AiAssistant';
 import Placeholder from '@/pages/Placeholder';
 import NotFound from '@/pages/NotFound';
 
@@ -80,13 +81,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'ai-assistant',
-        element: (
-          <Placeholder
-            title="AI Assistant"
-            description="AI-powered troubleshooting and recommendations"
-            iconKey="ai"
-          />
-        ),
+        element: <AiAssistant />,
       },
       {
         path: 'analytics',

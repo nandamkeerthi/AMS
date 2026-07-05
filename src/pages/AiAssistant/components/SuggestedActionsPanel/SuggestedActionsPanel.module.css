@@ -1,0 +1,15 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.actionBtn {
+  justify-content: flex-start !important;
+  border-radius: 4px !important;
+  text-transform: none !important;
+  font-size: 0.8125rem !important;
+}
