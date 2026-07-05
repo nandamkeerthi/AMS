@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { AppLayout } from '@/components/layout';
 import Dashboard from '@/pages/Dashboard';
+import IncidentList from '@/pages/Incidents';
 import Placeholder from '@/pages/Placeholder';
 import NotFound from '@/pages/NotFound';
 
@@ -20,13 +21,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'incidents',
-        element: (
-          <Placeholder
-            title="Incidents"
-            description="Manage and track production incidents"
-            iconKey="incidents"
-          />
-        ),
+        element: <IncidentList />,
       },
       {
         path: 'tickets',
