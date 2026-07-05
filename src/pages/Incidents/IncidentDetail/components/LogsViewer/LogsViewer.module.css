@@ -1,0 +1,102 @@
+.viewer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.filterChip {
+  padding: 4px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  background: var(--color-surface);
+  font-size: 0.75rem;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+}
+
+.filterChipActive {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: rgba(37, 99, 235, 0.04);
+}
+
+.logList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 400px;
+  overflow-y: auto;
+  background: #0f172a;
+  border-radius: 2px;
+  padding: var(--spacing-sm);
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 0.75rem;
+}
+
+.logEntry {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding: 4px 8px;
+  border-radius: 2px;
+  line-height: 1.5;
+}
+
+.logEntry:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.timestamp {
+  color: #64748b;
+  flex-shrink: 0;
+  min-width: 140px;
+}
+
+.level {
+  flex-shrink: 0;
+  min-width: 48px;
+  font-weight: 700;
+}
+
+.error {
+  color: #f87171;
+}
+
+.warn {
+  color: #fbbf24;
+}
+
+.info {
+  color: #60a5fa;
+}
+
+.debug {
+  color: #94a3b8;
+}
+
+.source {
+  color: #a78bfa;
+  flex-shrink: 0;
+  min-width: 120px;
+}
+
+.message {
+  color: #e2e8f0;
+  word-break: break-word;
+}
+
+.empty {
+  padding: var(--spacing-lg);
+  text-align: center;
+  color: #64748b;
+  font-family: inherit;
+  font-size: 0.875rem;
+}
