@@ -1,0 +1,131 @@
+{
+  "applications": [
+    "Core Banking API",
+    "Customer Portal",
+    "Payment Gateway",
+    "Identity Service",
+    "Data Pipeline",
+    "Analytics Platform",
+    "Monitoring Stack"
+  ],
+  "environments": ["Production", "UAT", "Development", "Staging"],
+  "categories": [
+    "Infrastructure",
+    "Application",
+    "Database",
+    "Network",
+    "Security",
+    "Performance"
+  ],
+  "priorities": [
+    { "value": "critical", "label": "Critical (P1)" },
+    { "value": "high", "label": "High (P2)" },
+    { "value": "medium", "label": "Medium (P3)" },
+    { "value": "low", "label": "Low (P4)" }
+  ],
+  "impacts": [
+    { "value": "enterprise", "label": "Enterprise — entire organization" },
+    { "value": "department", "label": "Department — multiple teams affected" },
+    { "value": "team", "label": "Team — single team affected" },
+    { "value": "individual", "label": "Individual — single user affected" }
+  ],
+  "urgencies": [
+    { "value": "immediate", "label": "Immediate — business stopped" },
+    { "value": "high", "label": "High — major degradation" },
+    { "value": "medium", "label": "Medium — workaround available" },
+    { "value": "low", "label": "Low — minimal impact" }
+  ],
+  "assignees": [
+    "Sarah Chen",
+    "Marcus Johnson",
+    "Priya Sharma",
+    "David Kim",
+    "Unassigned"
+  ],
+  "teams": [
+    "Platform Engineering",
+    "Application Support",
+    "Database Operations",
+    "Security Operations",
+    "Network Operations"
+  ],
+  "similarIncidents": [
+    {
+      "id": "INC-2024-1847",
+      "title": "Production API Gateway timeout errors",
+      "status": "in_progress",
+      "priority": "critical"
+    },
+    {
+      "id": "INC-2024-1846",
+      "title": "Database connection pool exhaustion",
+      "status": "open",
+      "priority": "high"
+    },
+    {
+      "id": "INC-2024-1835",
+      "title": "Message queue backlog growing",
+      "status": "in_progress",
+      "priority": "critical"
+    }
+  ],
+  "knowledgeArticles": [
+    {
+      "id": "KB-1042",
+      "title": "API Gateway timeout troubleshooting guide"
+    },
+    {
+      "id": "KB-0987",
+      "title": "Database connection pool tuning runbook"
+    },
+    {
+      "id": "KB-0756",
+      "title": "Incident severity classification matrix"
+    }
+  ],
+  "aiSuggestions": {
+    "default": {
+      "priority": "medium",
+      "category": "Application",
+      "confidence": 72,
+      "summary": "Provide a description to receive AI-assisted classification."
+    },
+    "patterns": [
+      {
+        "keywords": ["timeout", "gateway", "api", "502", "503"],
+        "priority": "critical",
+        "category": "Infrastructure",
+        "confidence": 91,
+        "summary": "Symptoms match infrastructure/API gateway failure patterns."
+      },
+      {
+        "keywords": ["database", "connection", "pool", "sql", "deadlock"],
+        "priority": "high",
+        "category": "Database",
+        "confidence": 88,
+        "summary": "Description indicates a database connectivity or capacity issue."
+      },
+      {
+        "keywords": ["auth", "login", "401", "403", "identity", "sso"],
+        "priority": "critical",
+        "category": "Security",
+        "confidence": 93,
+        "summary": "Authentication or identity service disruption detected."
+      },
+      {
+        "keywords": ["memory", "leak", "heap", "cpu", "performance"],
+        "priority": "high",
+        "category": "Application",
+        "confidence": 85,
+        "summary": "Application performance or resource exhaustion likely."
+      },
+      {
+        "keywords": ["certificate", "ssl", "tls", "expir"],
+        "priority": "medium",
+        "category": "Security",
+        "confidence": 90,
+        "summary": "Certificate or SSL/TLS configuration issue identified."
+      }
+    ]
+  }
+}
