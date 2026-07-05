@@ -8,3 +8,4 @@ export { default as StatusBadge } from './StatusBadge';
 export { default as GlassCard } from './GlassCard';
 export { default as SearchBar } from './SearchBar';
 export { default as DataTable } from './DataTable';
+export { default as IncidentTimeline, TIMELINE_EVENT_TYPES } from './IncidentTimeline';

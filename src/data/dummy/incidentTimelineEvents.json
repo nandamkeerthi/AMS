@@ -1,0 +1,60 @@
+{
+  "events": [
+    {
+      "id": "evt-1",
+      "type": "created",
+      "title": "Incident Created",
+      "description": "Incident INC-2024-1847 created automatically from monitoring alert.",
+      "author": "Monitoring System",
+      "timestamp": "2024-07-05T08:15:00Z"
+    },
+    {
+      "id": "evt-2",
+      "type": "assigned",
+      "title": "Assigned",
+      "description": "Incident assigned to Sarah Chen (Platform Engineering).",
+      "author": "System",
+      "timestamp": "2024-07-05T08:22:00Z"
+    },
+    {
+      "id": "evt-3",
+      "type": "ai_analysis",
+      "title": "AI Analysis Completed",
+      "description": "Root cause analysis completed with 92% confidence. Deployment v2.4.1 identified as likely cause.",
+      "author": "AI Assistant",
+      "timestamp": "2024-07-05T08:50:00Z"
+    },
+    {
+      "id": "evt-4",
+      "type": "comment",
+      "title": "Engineer Comment",
+      "description": "Investigating API gateway logs. Seeing connection pool exhaustion on upstream services.",
+      "author": "Sarah Chen",
+      "timestamp": "2024-07-05T09:05:00Z"
+    },
+    {
+      "id": "evt-5",
+      "type": "resolution_started",
+      "title": "Resolution Started",
+      "description": "Rollback procedure initiated for deployment v2.4.1.",
+      "author": "Sarah Chen",
+      "timestamp": "2024-07-05T09:30:00Z"
+    },
+    {
+      "id": "evt-6",
+      "type": "resolved",
+      "title": "Resolved",
+      "description": "Incident resolved. Rollback to v2.4.0 successful. Error rate returned to baseline.",
+      "author": "Sarah Chen",
+      "timestamp": "2024-07-05T10:15:00Z"
+    },
+    {
+      "id": "evt-7",
+      "type": "knowledge_article",
+      "title": "Knowledge Article Generated",
+      "description": "KB-1042 updated with rollback procedure and connection pool tuning guidance.",
+      "author": "AI Assistant",
+      "timestamp": "2024-07-05T10:30:00Z"
+    }
+  ]
+}
