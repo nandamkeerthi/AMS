@@ -1,0 +1,213 @@
+{
+  "pageConfig": {
+    "title": "AI Analysis",
+    "subtitle": "AI-generated incident intelligence with root cause analysis, remediation guidance, and supporting evidence",
+    "incidentId": "INC-2024-1847",
+    "generatedAt": "2024-07-05T09:52:00Z",
+    "reportFileName": "AI-Analysis-INC-2024-1847.txt"
+  },
+  "incidentSummary": {
+    "title": "Production API Gateway timeout errors",
+    "id": "INC-2024-1847",
+    "priority": "critical",
+    "status": "in_progress",
+    "application": "Customer Portal API",
+    "environment": "Production",
+    "assignee": "Sarah Chen",
+    "createdAt": "2024-07-05T08:15:00Z",
+    "description": "Elevated 502/504 errors on API Gateway affecting customer account endpoints. Error rate spiked to 18% within 30 minutes of deployment v2.4.1.",
+    "businessImpact": "Customer account summary and transaction APIs degraded. Estimated 12,400 users affected.",
+    "detectionSource": "Monitoring alert AGW-5XX-SPIKE"
+  },
+  "rootCause": {
+    "summary": "Deployment v2.4.1 reduced HikariCP connection pool maximum from 500 to 200, causing upstream connection exhaustion under peak load.",
+    "detail": "The regression was introduced in configuration commit a3f9c21. Under sustained traffic, core-banking-svc exhausted its connection pool, causing API Gateway upstream timeouts and cascading 502/504 responses.",
+    "contributingFactors": [
+      "Connection pool size reduced by 60% without load testing validation",
+      "Canary promotion completed before pool metrics stabilized",
+      "Circuit breaker thresholds not tuned for reduced pool capacity",
+      "No automatic rollback trigger on sustained upstream latency"
+    ]
+  },
+  "confidenceScore": {
+    "overall": 92,
+    "label": "High confidence",
+    "breakdown": [
+      { "id": "cb-1", "label": "Log correlation", "score": 95, "weight": 30 },
+      { "id": "cb-2", "label": "Deployment timeline match", "score": 98, "weight": 25 },
+      { "id": "cb-3", "label": "Historical pattern match", "score": 89, "weight": 20 },
+      { "id": "cb-4", "label": "Secondary region control", "score": 91, "weight": 15 },
+      { "id": "cb-5", "label": "Metric anomaly alignment", "score": 87, "weight": 10 }
+    ]
+  },
+  "suggestedFixes": [
+    {
+      "id": "fix-1",
+      "title": "Rollback to v2.4.0",
+      "description": "Revert Core Banking API deployment to last known stable version in the primary region.",
+      "confidence": 92,
+      "effort": "Low",
+      "estimatedRecovery": "15–20 minutes",
+      "automated": true,
+      "priority": "primary"
+    },
+    {
+      "id": "fix-2",
+      "title": "Increase connection pool size",
+      "description": "Update HikariCP maxPoolSize from 200 to 400 as an interim stabilization measure.",
+      "confidence": 78,
+      "effort": "Medium",
+      "estimatedRecovery": "30–45 minutes",
+      "automated": false,
+      "priority": "secondary"
+    },
+    {
+      "id": "fix-3",
+      "title": "Enable regional failover",
+      "description": "Route 100% traffic to the secondary region running v2.4.0 until primary stabilizes.",
+      "confidence": 85,
+      "effort": "Low",
+      "estimatedRecovery": "10–15 minutes",
+      "automated": true,
+      "priority": "secondary"
+    }
+  ],
+  "riskLevel": {
+    "level": "High",
+    "score": 78,
+    "description": "Continued degradation risks SLA breach and customer-facing outage across account services.",
+    "factors": [
+      { "id": "rf-1", "label": "Customer impact breadth", "severity": "critical" },
+      { "id": "rf-2", "label": "Revenue-impacting endpoints", "severity": "high" },
+      { "id": "rf-3", "label": "Cascade failure potential", "severity": "high" },
+      { "id": "rf-4", "label": "Time to SLA breach", "severity": "medium" }
+    ]
+  },
+  "affectedServices": [
+    {
+      "id": "svc-1",
+      "name": "Customer Portal API",
+      "status": "degraded",
+      "impact": "502/504 error rate at 18%",
+      "region": "Primary (East US)"
+    },
+    {
+      "id": "svc-2",
+      "name": "Core Banking Service",
+      "status": "critical",
+      "impact": "Connection pool exhausted — 200/200 active",
+      "region": "Primary (East US)"
+    },
+    {
+      "id": "svc-3",
+      "name": "API Gateway",
+      "status": "degraded",
+      "impact": "Upstream timeout on /api/v2/accounts/*",
+      "region": "Primary (East US)"
+    },
+    {
+      "id": "svc-4",
+      "name": "Auth Service",
+      "status": "healthy",
+      "impact": "No degradation detected",
+      "region": "Global"
+    },
+    {
+      "id": "svc-5",
+      "name": "Payment Gateway",
+      "status": "at_risk",
+      "impact": "Elevated latency — dependency on core-banking-svc",
+      "region": "Primary (East US)"
+    }
+  ],
+  "highlightedLogLines": [
+    {
+      "id": "hl-1",
+      "lineNumber": 11,
+      "level": "ERROR",
+      "source": "core-banking-svc",
+      "text": "2024-07-05 09:34:02.901  ERROR  [core-banking-svc]  HikariPool-1 - Connection is not available, request timed out after 30000ms",
+      "reason": "Direct evidence of connection pool exhaustion"
+    },
+    {
+      "id": "hl-2",
+      "lineNumber": 21,
+      "level": "DEBUG",
+      "source": "core-banking-svc",
+      "text": "2024-07-05 09:24:44.778  DEBUG  [core-banking-svc]  Config reload: hikari.maximum-pool-size changed from 500 to 200",
+      "reason": "Configuration change correlates with incident timeline"
+    },
+    {
+      "id": "hl-3",
+      "lineNumber": 3,
+      "level": "WARN",
+      "source": "core-banking-svc",
+      "text": "2024-07-05 09:43:41.887  WARN   [core-banking-svc]  Connection pool exhausted: 200/200 active connections",
+      "reason": "Pool saturation immediately preceding gateway failures"
+    },
+    {
+      "id": "hl-4",
+      "lineNumber": 1,
+      "level": "ERROR",
+      "source": "api-gateway",
+      "text": "2024-07-05 09:44:12.452  ERROR  [api-gateway]  upstream timed out (110: Connection timed out) while connecting to upstream",
+      "reason": "Customer-facing symptom of upstream unavailability"
+    }
+  ],
+  "knowledgeArticles": [
+    {
+      "id": "KB-1042",
+      "title": "API Gateway timeout troubleshooting guide",
+      "category": "Runbook",
+      "relevance": 95,
+      "summary": "Step-by-step diagnosis for upstream timeout and 502/504 errors."
+    },
+    {
+      "id": "KB-0891",
+      "title": "Deployment rollback procedure — Core Banking",
+      "category": "Runbook",
+      "relevance": 91,
+      "summary": "Approved rollback workflow for core-banking-svc production deployments."
+    },
+    {
+      "id": "KB-0756",
+      "title": "Connection pool tuning runbook",
+      "category": "Best Practice",
+      "relevance": 84,
+      "summary": "HikariCP sizing guidelines and pool exhaustion remediation patterns."
+    },
+    {
+      "id": "KB-0612",
+      "title": "Regional failover activation guide",
+      "category": "Runbook",
+      "relevance": 79,
+      "summary": "Traffic routing procedures for primary region degradation events."
+    }
+  ],
+  "alternativeFixes": [
+    {
+      "id": "alt-1",
+      "title": "Scale out pod replicas",
+      "description": "Increase core-banking-svc replicas from 5 to 8 to distribute connection load.",
+      "confidence": 62,
+      "effort": "Medium",
+      "tradeoff": "May increase database connection pressure without pool config change"
+    },
+    {
+      "id": "alt-2",
+      "title": "Enable aggressive query timeout",
+      "description": "Reduce long-running query threshold from 5 minutes to 60 seconds.",
+      "confidence": 55,
+      "effort": "Low",
+      "tradeoff": "May terminate legitimate batch operations"
+    },
+    {
+      "id": "alt-3",
+      "title": "Throttle non-critical endpoints",
+      "description": "Apply rate limiting to analytics and reporting endpoints to preserve pool capacity.",
+      "confidence": 68,
+      "effort": "Low",
+      "tradeoff": "Temporary feature degradation for internal users"
+    }
+  ]
+}

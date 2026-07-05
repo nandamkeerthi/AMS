@@ -1,0 +1,76 @@
+.card {
+  height: 100%;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border-light);
+  border-left: 3px solid var(--color-warning);
+  border-radius: 0 4px 4px 0;
+  background: #fffbeb;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.title {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.confidence {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-warning);
+  white-space: nowrap;
+}
+
+.description {
+  margin: 0 0 var(--spacing-sm);
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.meta {
+  margin-bottom: var(--spacing-sm);
+}
+
+.effort {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.tradeoff {
+  margin: 0;
+  padding: var(--spacing-sm);
+  font-size: 0.8125rem;
+  color: #92400e;
+  background: rgba(245, 158, 11, 0.08);
+  border-radius: 4px;
+  line-height: 1.4;
+}
+
+.tradeoffLabel {
+  font-weight: 600;
+  margin-right: 4px;
+}

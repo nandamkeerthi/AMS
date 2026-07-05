@@ -6,6 +6,7 @@ import CreateIncident from '@/pages/Incidents/CreateIncident';
 import IncidentDetail from '@/pages/Incidents/IncidentDetail';
 import LogUpload from '@/pages/LogUpload';
 import LogViewer from '@/pages/LogViewer';
+import AiAnalysis from '@/pages/AiAnalysis';
 import Placeholder from '@/pages/Placeholder';
 import NotFound from '@/pages/NotFound';
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: 'logs/viewer',
         element: <LogViewer />,
+      },
+      {
+        path: 'ai/analysis',
+        element: <AiAnalysis />,
       },
       {
         path: 'tickets',

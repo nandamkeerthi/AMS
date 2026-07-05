@@ -1,0 +1,66 @@
+.card {
+  height: 100%;
+}
+
+.scoreRing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md) 0 var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.scoreValue {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-success);
+  line-height: 1;
+}
+
+.scoreLabel {
+  margin-top: 4px;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breakdownHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.breakdownLabel {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.breakdownScore {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.progress {
+  height: 6px !important;
+  border-radius: 3px;
+  background: var(--color-border-light) !important;
+}
+
+.progress :global(.MuiLinearProgress-bar) {
+  border-radius: 3px;
+  background: linear-gradient(90deg, #10b981, #34d399) !important;
+}
