@@ -17,6 +17,7 @@ import {
   ResolutionSection,
   DetailTabs,
 } from './components';
+import { AssignIncidentDialog } from '@/pages/Incidents/components';
 import styles from './IncidentDetail.module.css';
 
 const TABS = [
@@ -31,6 +32,8 @@ function IncidentDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
+  const [assignOpen, setAssignOpen] = useState(false);
+  const [localAssignee, setLocalAssignee] = useState(null);
   const [localComments, setLocalComments] = useState(null);
   const [localResolution, setLocalResolution] = useState(null);
 
@@ -41,6 +44,7 @@ function IncidentDetail() {
 
   const comments = localComments ?? incident?.comments ?? [];
   const resolution = localResolution ?? incident?.resolution;
+  const assignee = localAssignee ?? incident?.assignee;
 
   const handleAddComment = (content) => {
     const newComment = {
@@ -146,10 +150,21 @@ function IncidentDetail() {
       />
 
       <IncidentDetailHeader
-        incident={incident}
-        onAssign={() => toast('Assign dialog — coming soon', { icon: 'ℹ️' })}
+        incident={{ ...incident, assignee }}
+        onAssign={() => setAssignOpen(true)}
         onEscalate={() => toast('Incident escalated', { icon: '⬆️' })}
         onResolve={() => setActiveTab('resolution')}
+      />
+
+      <AssignIncidentDialog
+        open={assignOpen}
+        onClose={() => setAssignOpen(false)}
+        incidentId={incident.id}
+        currentAssignee={assignee}
+        onAssign={(engineer) => {
+          setLocalAssignee(engineer.name);
+          toast.success(`Assigned to ${engineer.name}`);
+        }}
       />
 
       <div className={styles.layout}>

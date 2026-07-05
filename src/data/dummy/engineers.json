@@ -1,0 +1,84 @@
+{
+  "engineers": [
+    {
+      "id": "eng-001",
+      "name": "Sarah Chen",
+      "initials": "SC",
+      "email": "sarah.chen@company.com",
+      "team": "Platform Engineering",
+      "skill": "API Gateway, Kubernetes, Cloud Infrastructure",
+      "workload": { "assigned": 5, "capacity": 8 },
+      "availability": "available"
+    },
+    {
+      "id": "eng-002",
+      "name": "Marcus Johnson",
+      "initials": "MJ",
+      "email": "marcus.johnson@company.com",
+      "team": "Database Operations",
+      "skill": "PostgreSQL, Connection Pooling, Performance Tuning",
+      "workload": { "assigned": 7, "capacity": 8 },
+      "availability": "busy"
+    },
+    {
+      "id": "eng-003",
+      "name": "Priya Sharma",
+      "initials": "PS",
+      "email": "priya.sharma@company.com",
+      "team": "Application Support",
+      "skill": "Java, Spring Boot, Microservices",
+      "workload": { "assigned": 3, "capacity": 8 },
+      "availability": "available"
+    },
+    {
+      "id": "eng-004",
+      "name": "David Kim",
+      "initials": "DK",
+      "email": "david.kim@company.com",
+      "team": "Security Operations",
+      "skill": "Identity, SSO, OAuth, Security Incident Response",
+      "workload": { "assigned": 6, "capacity": 8 },
+      "availability": "available"
+    },
+    {
+      "id": "eng-005",
+      "name": "Emily Rodriguez",
+      "initials": "ER",
+      "email": "emily.rodriguez@company.com",
+      "team": "Network Operations",
+      "skill": "CDN, Load Balancing, DNS, Network Troubleshooting",
+      "workload": { "assigned": 4, "capacity": 8 },
+      "availability": "away"
+    },
+    {
+      "id": "eng-006",
+      "name": "James Wilson",
+      "initials": "JW",
+      "email": "james.wilson@company.com",
+      "team": "Platform Engineering",
+      "skill": "DevOps, CI/CD, Docker, Monitoring",
+      "workload": { "assigned": 8, "capacity": 8 },
+      "availability": "busy"
+    },
+    {
+      "id": "eng-007",
+      "name": "Aisha Patel",
+      "initials": "AP",
+      "email": "aisha.patel@company.com",
+      "team": "Application Support",
+      "skill": "React, Node.js, Frontend Performance",
+      "workload": { "assigned": 2, "capacity": 8 },
+      "availability": "available"
+    },
+    {
+      "id": "eng-008",
+      "name": "Tom Nguyen",
+      "initials": "TN",
+      "email": "tom.nguyen@company.com",
+      "team": "Database Operations",
+      "skill": "MongoDB, Redis, Data Pipeline",
+      "workload": { "assigned": 5, "capacity": 8 },
+      "availability": "offline"
+    }
+  ]
+}
