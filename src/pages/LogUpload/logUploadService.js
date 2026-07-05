@@ -1,12 +1,8 @@
 import logUploadData from '@/data/dummy/logUpload.json';
 
-const SIMULATED_DELAY_MS = 400;
+import { delay } from '@/utils/async';
 
-function delay(ms = SIMULATED_DELAY_MS) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
+const SIMULATED_DELAY_MS = 400;
 
 function formatFileSize(bytes) {
   if (bytes < 1024) return `${bytes} B`;
@@ -68,7 +64,7 @@ function createUploadFromFile(file) {
 
 export const logUploadService = {
   async getPageData() {
-    await delay();
+    await delay(SIMULATED_DELAY_MS);
     return logUploadData;
   },
 

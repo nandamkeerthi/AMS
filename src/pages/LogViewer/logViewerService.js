@@ -1,12 +1,8 @@
 import logViewerData from '@/data/dummy/logViewer.json';
+import { delay } from '@/utils/async';
+import { triggerDownload } from '@/utils/download';
 
 const SIMULATED_DELAY_MS = 350;
-
-function delay(ms = SIMULATED_DELAY_MS) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
 
 function formatTimestamp(iso) {
   const date = new Date(iso);
@@ -75,19 +71,9 @@ function buildExportContent(lines) {
   return lines.map((line) => line.text).join('\n');
 }
 
-function triggerDownload(content, fileName) {
-  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const anchor = document.createElement('a');
-  anchor.href = url;
-  anchor.download = fileName;
-  anchor.click();
-  URL.revokeObjectURL(url);
-}
-
 export const logViewerService = {
   async getPageData() {
-    await delay();
+    await delay(SIMULATED_DELAY_MS);
     return {
       ...logViewerData,
       lines: buildLogLines(logViewerData.logs),

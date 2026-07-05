@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { PageHeader, GlassCard, ErrorState, SkeletonLoader } from '@/components/common';
+import { PageHeader, GlassCard, ErrorState, SkeletonLoader, IncidentTimeline } from '@/components/common';
+import { normalizeIncidentTimelineEvents } from '@/utils/timeline';
 import { useAsyncData } from '@/hooks';
 import { incidentDetailService } from './incidentDetailService';
 import {
   IncidentDetailHeader,
   IncidentSummary,
-  IncidentTimeline,
   LogsViewer,
   AiAnalysisCard,
   SuggestedFixes,
@@ -111,7 +111,7 @@ function IncidentDetail() {
       case 'timeline':
         return (
           <GlassCard title="Activity timeline" variant="solid">
-            <IncidentTimeline events={incident.timeline} />
+            <IncidentTimeline events={normalizeIncidentTimelineEvents(incident.timeline)} />
           </GlassCard>
         );
       case 'logs':

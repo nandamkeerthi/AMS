@@ -51,7 +51,15 @@ function KnowledgeArticle() {
     );
   }
 
-  if (!article) return null;
+  if (!article) {
+    return (
+      <ErrorState
+        title="Article not found"
+        message="The requested knowledge article could not be loaded."
+        onRetry={refetch}
+      />
+    );
+  }
 
   return (
     <div className={styles.page}>

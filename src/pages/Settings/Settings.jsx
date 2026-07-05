@@ -5,6 +5,7 @@ import {
   PageHeader,
   ErrorState,
   SkeletonLoader,
+  FormActions,
 } from '@/components/common';
 import { useAsyncData } from '@/hooks';
 import { settingsService } from './settingsService';
@@ -14,7 +15,6 @@ import {
   LanguageSection,
   TimeZoneSection,
   DashboardPreferencesSection,
-  SettingsFormActions,
 } from './components';
 import styles from './Settings.module.css';
 
@@ -116,7 +116,7 @@ function Settings() {
           </div>
         </div>
 
-        <SettingsFormActions
+        <FormActions
           onSave={onSave}
           onReset={handleReset}
           saving={saving}

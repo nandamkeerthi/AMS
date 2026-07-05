@@ -1,8 +1,14 @@
 import { Button, CircularProgress } from '@mui/material';
 import { FiSave, FiRotateCcw } from 'react-icons/fi';
-import styles from './ProfileFormActions.module.css';
+import styles from './FormActions.module.css';
 
-function ProfileFormActions({ onSave, onReset, saving }) {
+function FormActions({
+  onSave,
+  onReset,
+  saving = false,
+  saveLabel = 'Save',
+  resetLabel = 'Reset',
+}) {
   return (
     <div className={styles.actions}>
       <Button
@@ -12,7 +18,7 @@ function ProfileFormActions({ onSave, onReset, saving }) {
         disabled={saving}
         className={styles.btn}
       >
-        Save
+        {saveLabel}
       </Button>
       <Button
         variant="outlined"
@@ -21,10 +27,10 @@ function ProfileFormActions({ onSave, onReset, saving }) {
         disabled={saving}
         className={styles.btn}
       >
-        Reset
+        {resetLabel}
       </Button>
     </div>
   );
 }
 
-export default ProfileFormActions;
+export default FormActions;

@@ -1,10 +1,7 @@
 import { TextField } from '@mui/material';
 import { GlassCard } from '@/components/common';
+import { fieldSx } from '@/utils/mui';
 import styles from './ProfileUserInfoSection.module.css';
-
-const fieldSx = {
-  '& .MuiOutlinedInput-root': { borderRadius: '4px' },
-};
 
 function InfoRow({ label, value }) {
   return (

@@ -1,1 +1,2 @@
-export { default, TIMELINE_EVENT_TYPES } from './IncidentTimeline';
+export { default } from './IncidentTimeline';
+export { TIMELINE_EVENT_TYPES } from './timelineConstants';

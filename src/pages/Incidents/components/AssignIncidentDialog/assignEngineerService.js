@@ -1,6 +1,6 @@
 import engineersData from '@/data/dummy/engineers.json';
 
-const delay = (ms = 400) => new Promise((resolve) => setTimeout(resolve, ms));
+import { delay } from '@/utils/async';
 
 export const assignEngineerService = {
   async getEngineers() {

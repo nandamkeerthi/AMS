@@ -1,6 +1,6 @@
 import incidentsData from '@/data/dummy/incidents.json';
 
-const delay = (ms = 700) => new Promise((resolve) => setTimeout(resolve, ms));
+import { delay } from '@/utils/async';
 
 export const incidentService = {
   async getIncidents() {

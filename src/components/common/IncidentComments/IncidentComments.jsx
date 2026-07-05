@@ -12,7 +12,7 @@ import {
 import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import toast from 'react-hot-toast';
-import EmptyState from '../EmptyState';
+import EmptyState from '@/components/common/EmptyState';
 import styles from './IncidentComments.module.css';
 
 const DEFAULT_CURRENT_USER = {

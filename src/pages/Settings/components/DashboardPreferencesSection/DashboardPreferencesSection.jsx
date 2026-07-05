@@ -1,11 +1,8 @@
 import { FormControlLabel, MenuItem, Switch, TextField } from '@mui/material';
 import { Controller } from 'react-hook-form';
 import { GlassCard } from '@/components/common';
+import { fieldSx } from '@/utils/mui';
 import styles from './DashboardPreferencesSection.module.css';
-
-const fieldSx = {
-  '& .MuiOutlinedInput-root': { borderRadius: '4px' },
-};
 
 function DashboardPreferencesSection({ control, dateRangeOptions = [] }) {
   return (

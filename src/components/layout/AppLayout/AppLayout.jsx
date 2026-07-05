@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { BREAKPOINTS } from '@/utils/constants';
 import { useMediaQuery } from '@/hooks';
+import { ErrorBoundary, SkeletonLoader } from '@/components/common';
 import Sidebar from '@/components/layout/Sidebar';
 import Header from '@/components/layout/Header';
 import styles from './AppLayout.module.css';
@@ -23,6 +24,9 @@ function AppLayout() {
 
   return (
     <div className={styles.layout}>
+      <a href="#main-content" className={styles.skipLink}>
+        Skip to main content
+      </a>
       <Sidebar
         collapsed={sidebarCollapsed}
         onToggleCollapse={() => setSidebarCollapsed((prev) => !prev)}
@@ -33,8 +37,12 @@ function AppLayout() {
 
       <div className={mainClass}>
         <Header onMenuClick={() => setMobileMenuOpen(true)} />
-        <main className={styles.content}>
-          <Outlet />
+        <main className={styles.content} id="main-content" tabIndex={-1}>
+          <ErrorBoundary>
+            <Suspense fallback={<SkeletonLoader variant="page" />}>
+              <Outlet />
+            </Suspense>
+          </ErrorBoundary>
         </main>
       </div>
     </div>

@@ -1,13 +1,8 @@
 import settingsData from '@/data/dummy/settings.json';
+import { delay } from '@/utils/async';
 
 const LOAD_DELAY_MS = 400;
 const SAVE_DELAY_MS = 600;
-
-function delay(ms) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
 
 function buildFormValues(data) {
   return {

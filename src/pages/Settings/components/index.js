@@ -3,4 +3,3 @@ export { default as NotificationPreferencesSection } from './NotificationPrefere
 export { default as LanguageSection } from './LanguageSection';
 export { default as TimeZoneSection } from './TimeZoneSection';
 export { default as DashboardPreferencesSection } from './DashboardPreferencesSection';
-export { default as SettingsFormActions } from './SettingsFormActions';

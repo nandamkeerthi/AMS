@@ -91,6 +91,8 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   cursor: pointer;
+  text-decoration: none;
+  color: inherit;
   transition: background-color var(--transition-fast);
 }
 

@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
 import toast from 'react-hot-toast';
 import { FiPlus } from 'react-icons/fi';
+import { formatDate } from '@/utils/format';
 import {
   PageHeader,
   GlassCard,
@@ -24,15 +25,6 @@ import {
   CategoryDonutChart,
 } from './components';
 import styles from './Dashboard.module.css';
-
-function formatDate(isoString) {
-  return new Date(isoString).toLocaleString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-}
 
 const incidentColumns = [
   {

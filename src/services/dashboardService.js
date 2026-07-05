@@ -1,10 +1,6 @@
 import dashboardData from '@/data/dummy/dashboard.json';
 
-/**
- * Simulates API delay for realistic loading states.
- * @param {number} ms - Delay in milliseconds
- */
-const delay = (ms = 800) => new Promise((resolve) => setTimeout(resolve, ms));
+import { delay } from '@/utils/async';
 
 /**
  * Dashboard data service — returns dummy JSON with simulated latency.

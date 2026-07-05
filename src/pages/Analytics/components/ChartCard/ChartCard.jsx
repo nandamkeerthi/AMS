@@ -1,7 +1,15 @@
+import { memo } from 'react';
 import { GlassCard, EmptyState } from '@/components/common';
 import styles from './ChartCard.module.css';
 
-function ChartCard({ title, subtitle, data, children, delay = 0, className = '' }) {
+const ChartCard = memo(function ChartCard({
+  title,
+  subtitle,
+  data,
+  children,
+  delay = 0,
+  className = '',
+}) {
   const isEmpty = !data || data.length === 0;
 
   return (
@@ -23,6 +31,6 @@ function ChartCard({ title, subtitle, data, children, delay = 0, className = '' 
       )}
     </GlassCard>
   );
-}
+});
 
 export default ChartCard;

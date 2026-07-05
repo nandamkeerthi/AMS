@@ -1,6 +1,5 @@
 export { default as IncidentDetailHeader } from './IncidentDetailHeader';
 export { default as IncidentSummary } from './IncidentSummary';
-export { default as IncidentTimeline } from './IncidentTimeline';
 export { default as LogsViewer } from './LogsViewer';
 export { default as AiAnalysisCard } from './AiAnalysisCard';
 export { default as SuggestedFixes } from './SuggestedFixes';

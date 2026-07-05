@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
@@ -13,19 +14,9 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import BuildCircleOutlinedIcon from '@mui/icons-material/BuildCircleOutlined';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
-import EmptyState from '../EmptyState';
+import EmptyState from '@/components/common/EmptyState';
+import { formatDateTime, formatShortDate } from '@/utils/format';
 import styles from './IncidentTimeline.module.css';
-
-/** Supported incident timeline event types */
-export const TIMELINE_EVENT_TYPES = {
-  created: 'created',
-  assigned: 'assigned',
-  ai_analysis: 'ai_analysis',
-  comment: 'comment',
-  resolution_started: 'resolution_started',
-  resolved: 'resolved',
-  knowledge_article: 'knowledge_article',
-};
 
 const EVENT_CONFIG = {
   created: {
@@ -66,22 +57,11 @@ const EVENT_CONFIG = {
 };
 
 function formatTimestamp(iso) {
-  return new Date(iso).toLocaleString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
+  return formatDateTime(iso);
 }
 
 function formatShortTime(iso) {
-  return new Date(iso).toLocaleString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
+  return formatShortDate(iso);
 }
 
 /**
@@ -168,4 +148,4 @@ function IncidentTimeline({
   );
 }
 
-export default IncidentTimeline;
+export default memo(IncidentTimeline);

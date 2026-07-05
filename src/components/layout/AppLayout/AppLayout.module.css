@@ -2,6 +2,25 @@
   display: flex;
   min-height: 100vh;
   background: var(--color-background);
+  position: relative;
+}
+
+.skipLink {
+  position: absolute;
+  top: -100%;
+  left: var(--spacing-md);
+  z-index: 2000;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 4px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skipLink:focus {
+  top: var(--spacing-sm);
 }
 
 .main {

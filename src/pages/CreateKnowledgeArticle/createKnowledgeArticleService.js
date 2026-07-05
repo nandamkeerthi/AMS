@@ -1,6 +1,6 @@
 import formOptions from '@/data/dummy/createKnowledgeArticle.json';
 
-const delay = (ms = 450) => new Promise((resolve) => setTimeout(resolve, ms));
+import { delay } from '@/utils/async';
 
 export const createKnowledgeArticleService = {
   async getFormOptions() {

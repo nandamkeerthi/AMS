@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import { IconButton, Tooltip } from '@mui/material';
 import { FiMenu, FiBell, FiHelpCircle } from 'react-icons/fi';
 import SearchBar from '@/components/common/SearchBar';
@@ -48,7 +49,11 @@ function Header({ onMenuClick }) {
           </IconButton>
         </Tooltip>
 
-        <div className={styles.userMenu} role="button" tabIndex={0} aria-label="User menu">
+        <RouterLink
+          to="/profile"
+          className={styles.userMenu}
+          aria-label="Jane Doe profile — Support Lead"
+        >
           <div className={styles.avatar} aria-hidden="true">
             JD
           </div>
@@ -56,7 +61,7 @@ function Header({ onMenuClick }) {
             <span className={styles.userName}>Jane Doe</span>
             <span className={styles.userRole}>Support Lead</span>
           </div>
-        </div>
+        </RouterLink>
       </div>
     </header>
   );

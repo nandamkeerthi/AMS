@@ -1,13 +1,8 @@
 import profileData from '@/data/dummy/profile.json';
+import { delay } from '@/utils/async';
 
 const LOAD_DELAY_MS = 400;
 const SAVE_DELAY_MS = 600;
-
-function delay(ms) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
 
 function buildFormValues(user) {
   return {

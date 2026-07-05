@@ -5,6 +5,7 @@ import {
   PageHeader,
   ErrorState,
   SkeletonLoader,
+  FormActions,
 } from '@/components/common';
 import { useAsyncData } from '@/hooks';
 import { profileService } from './profileService';
@@ -14,7 +15,6 @@ import {
   ProfileRoleSection,
   ProfileTeamSection,
   ProfileContactSection,
-  ProfileFormActions,
 } from './components';
 import styles from './Profile.module.css';
 
@@ -131,7 +131,7 @@ function Profile() {
           />
 
           {isEditing && (
-            <ProfileFormActions
+            <FormActions
               onSave={onSave}
               onReset={handleReset}
               saving={saving}

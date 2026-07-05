@@ -1,12 +1,8 @@
 import analyticsData from '@/data/dummy/analytics.json';
+import { delay } from '@/utils/async';
+import { triggerDownload } from '@/utils/download';
 
 const LOAD_DELAY_MS = 400;
-
-function delay(ms = LOAD_DELAY_MS) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
 
 function scaleValue(value, scale) {
   return Math.max(1, Math.round(value * scale));
@@ -84,19 +80,9 @@ function buildReportContent(filters, chartData) {
   return lines.join('\n');
 }
 
-function triggerDownload(content, fileName) {
-  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const anchor = document.createElement('a');
-  anchor.href = url;
-  anchor.download = fileName;
-  anchor.click();
-  URL.revokeObjectURL(url);
-}
-
 export const analyticsService = {
   async getPageData() {
-    await delay();
+    await delay(LOAD_DELAY_MS);
     return analyticsData;
   },
 

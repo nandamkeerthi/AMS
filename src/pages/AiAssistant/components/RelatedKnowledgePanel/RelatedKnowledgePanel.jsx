@@ -1,12 +1,22 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
-import { GlassCard } from '@/components/common';
+import { GlassCard, EmptyState } from '@/components/common';
 import styles from './RelatedKnowledgePanel.module.css';
 
 function RelatedKnowledgePanel({ articles = [] }) {
   const navigate = useNavigate();
 
-  if (!articles.length) return null;
+  if (!articles.length) {
+    return (
+      <GlassCard title="Related Knowledge Articles" variant="solid">
+        <EmptyState
+          compact
+          title="No related articles"
+          description="Knowledge articles linked to this incident will appear here."
+        />
+      </GlassCard>
+    );
+  }
 
   return (
     <GlassCard title="Related Knowledge Articles" variant="solid">

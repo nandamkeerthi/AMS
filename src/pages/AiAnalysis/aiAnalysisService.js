@@ -1,22 +1,7 @@
 import aiAnalysisData from '@/data/dummy/aiAnalysis.json';
-
-const SIMULATED_DELAY_MS = 350;
-
-function delay(ms = SIMULATED_DELAY_MS) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
-
-function formatDateTime(iso) {
-  return new Date(iso).toLocaleString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-}
+import { delay } from '@/utils/async';
+import { triggerDownload } from '@/utils/download';
+import { formatDateTime } from '@/utils/format';
 
 function buildReportContent(data) {
   const lines = [
@@ -77,19 +62,9 @@ function buildReportContent(data) {
   return lines.join('\n');
 }
 
-function triggerDownload(content, fileName) {
-  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const anchor = document.createElement('a');
-  anchor.href = url;
-  anchor.download = fileName;
-  anchor.click();
-  URL.revokeObjectURL(url);
-}
-
 export const aiAnalysisService = {
   async getPageData() {
-    await delay();
+    await delay(350);
     return aiAnalysisData;
   },
 

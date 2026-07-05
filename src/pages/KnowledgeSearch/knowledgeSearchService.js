@@ -1,12 +1,8 @@
 import knowledgeSearchData from '@/data/dummy/knowledgeSearch.json';
 
-const SIMULATED_DELAY_MS = 350;
+import { delay } from '@/utils/async';
 
-function delay(ms = SIMULATED_DELAY_MS) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
+const SIMULATED_DELAY_MS = 350;
 
 function getArticlesByIds(articles, ids = []) {
   const map = new Map(articles.map((article) => [article.id, article]));
@@ -107,7 +103,7 @@ function formatDate(iso) {
 
 export const knowledgeSearchService = {
   async getPageData() {
-    await delay();
+    await delay(SIMULATED_DELAY_MS);
     return knowledgeSearchData;
   },
 

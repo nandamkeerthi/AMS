@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {
   LineChart,
   Line,
@@ -24,7 +25,7 @@ const axisProps = {
   tickLine: false,
 };
 
-export function IncidentTrendLineChart({ data = [] }) {
+export const IncidentTrendLineChart = memo(function IncidentTrendLineChart({ data = [] }) {
   return (
     <div className={chartStyles.chartWrap}>
       <ResponsiveContainer width="100%" height="100%">
@@ -40,9 +41,9 @@ export function IncidentTrendLineChart({ data = [] }) {
       </ResponsiveContainer>
     </div>
   );
-}
+});
 
-export function ResolutionTimeBarChart({ data = [] }) {
+export const ResolutionTimeBarChart = memo(function ResolutionTimeBarChart({ data = [] }) {
   return (
     <div className={chartStyles.chartWrap}>
       <ResponsiveContainer width="100%" height="100%">
@@ -56,9 +57,9 @@ export function ResolutionTimeBarChart({ data = [] }) {
       </ResponsiveContainer>
     </div>
   );
-}
+});
 
-export function StatusDistributionPieChart({ data = [] }) {
+export const StatusDistributionPieChart = memo(function StatusDistributionPieChart({ data = [] }) {
   return (
     <div className={chartStyles.chartWrap}>
       <ResponsiveContainer width="100%" height="100%">
@@ -74,9 +75,9 @@ export function StatusDistributionPieChart({ data = [] }) {
       </ResponsiveContainer>
     </div>
   );
-}
+});
 
-export function AiAccuracyAreaChart({ data = [] }) {
+export const AiAccuracyAreaChart = memo(function AiAccuracyAreaChart({ data = [] }) {
   return (
     <div className={chartStyles.chartWrap}>
       <ResponsiveContainer width="100%" height="100%">
@@ -96,9 +97,9 @@ export function AiAccuracyAreaChart({ data = [] }) {
       </ResponsiveContainer>
     </div>
   );
-}
+});
 
-export function RepeatIncidentLineChart({ data = [] }) {
+export const RepeatIncidentLineChart = memo(function RepeatIncidentLineChart({ data = [] }) {
   return (
     <div className={chartStyles.chartWrap}>
       <ResponsiveContainer width="100%" height="100%">
@@ -114,9 +115,9 @@ export function RepeatIncidentLineChart({ data = [] }) {
       </ResponsiveContainer>
     </div>
   );
-}
+});
 
-export function KnowledgeGrowthAreaChart({ data = [] }) {
+export const KnowledgeGrowthAreaChart = memo(function KnowledgeGrowthAreaChart({ data = [] }) {
   return (
     <div className={chartStyles.chartWrap}>
       <ResponsiveContainer width="100%" height="100%">
@@ -138,9 +139,9 @@ export function KnowledgeGrowthAreaChart({ data = [] }) {
       </ResponsiveContainer>
     </div>
   );
-}
+});
 
-export function TopApplicationsBarChart({ data = [] }) {
+export const TopApplicationsBarChart = memo(function TopApplicationsBarChart({ data = [] }) {
   return (
     <div className={chartStyles.chartWrap}>
       <ResponsiveContainer width="100%" height="100%">
@@ -154,9 +155,9 @@ export function TopApplicationsBarChart({ data = [] }) {
       </ResponsiveContainer>
     </div>
   );
-}
+});
 
-export function MonthlySummaryBarChart({ data = [] }) {
+export const MonthlySummaryBarChart = memo(function MonthlySummaryBarChart({ data = [] }) {
   return (
     <div className={chartStyles.chartWrap}>
       <ResponsiveContainer width="100%" height="100%">
@@ -173,4 +174,4 @@ export function MonthlySummaryBarChart({ data = [] }) {
       </ResponsiveContainer>
     </div>
   );
-}
+});

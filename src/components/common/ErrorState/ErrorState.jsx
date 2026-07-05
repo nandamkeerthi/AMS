@@ -13,10 +13,19 @@ import styles from './ErrorState.module.css';
  */
 function ErrorState({
   title = 'Something went wrong',
-  message = 'We encountered an error while loading this content. Please try again.',
+  message,
+  description,
   onRetry,
+  onAction,
+  actionLabel = 'Try Again',
   compact = false,
 }) {
+  const displayMessage =
+    message ||
+    description ||
+    'We encountered an error while loading this content. Please try again.';
+  const handleRetry = onRetry || onAction;
+
   return (
     <motion.div
       className={`${styles.errorState} ${compact ? styles.compact : ''}`}
@@ -29,15 +38,15 @@ function ErrorState({
         <FiAlertTriangle size={compact ? 28 : 36} />
       </div>
       <h3 className={styles.title}>{title}</h3>
-      <p className={styles.message}>{message}</p>
-      {onRetry && (
+      <p className={styles.message}>{displayMessage}</p>
+      {handleRetry && (
         <div className={styles.actions}>
           <Button
             variant="contained"
             startIcon={<FiRefreshCw />}
-            onClick={onRetry}
+            onClick={handleRetry}
           >
-            Try Again
+            {actionLabel}
           </Button>
         </div>
       )}

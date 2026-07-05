@@ -1,21 +1,23 @@
-import { GlassCard } from '@/components/common';
+import { GlassCard, EmptyState } from '@/components/common';
+import { formatShortDate } from '@/utils/format';
 import styles from './ConversationHistoryPanel.module.css';
-
-function formatDate(iso) {
-  return new Date(iso).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-}
 
 function ConversationHistoryPanel({
   conversations = [],
   activeId,
   onSelect,
 }) {
-  if (!conversations.length) return null;
+  if (!conversations.length) {
+    return (
+      <GlassCard title="Conversation History" variant="solid">
+        <EmptyState
+          compact
+          title="No conversations yet"
+          description="Previous AI assistant sessions will appear here."
+        />
+      </GlassCard>
+    );
+  }
 
   return (
     <GlassCard title="Conversation History" variant="solid">
@@ -30,7 +32,7 @@ function ConversationHistoryPanel({
               <span className={styles.title}>{conv.title}</span>
               <span className={styles.preview}>{conv.preview}</span>
               <span className={styles.meta}>
-                {formatDate(conv.timestamp)} · {conv.messageCount} messages
+                {formatShortDate(conv.timestamp)} · {conv.messageCount} messages
               </span>
             </button>
           </li>

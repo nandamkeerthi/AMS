@@ -1,12 +1,8 @@
 import knowledgeArticlesData from '@/data/dummy/knowledgeArticles.json';
 
-const SIMULATED_DELAY_MS = 350;
+import { delay } from '@/utils/async';
 
-function delay(ms = SIMULATED_DELAY_MS) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
+const SIMULATED_DELAY_MS = 350;
 
 function formatDateTime(iso) {
   return new Date(iso).toLocaleDateString('en-US', {
@@ -18,7 +14,7 @@ function formatDateTime(iso) {
 
 export const knowledgeArticleService = {
   async getArticleById(id) {
-    await delay();
+    await delay(SIMULATED_DELAY_MS);
 
     const article = knowledgeArticlesData.articles[id];
     if (!article) {

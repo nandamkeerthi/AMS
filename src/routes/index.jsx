@@ -1,26 +1,28 @@
+import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { AppLayout } from '@/components/layout';
-import Dashboard from '@/pages/Dashboard';
-import IncidentList from '@/pages/Incidents';
-import CreateIncident from '@/pages/Incidents/CreateIncident';
-import IncidentDetail from '@/pages/Incidents/IncidentDetail';
-import LogUpload from '@/pages/LogUpload';
-import LogViewer from '@/pages/LogViewer';
-import AiAnalysis from '@/pages/AiAnalysis';
-import RepeatIncidentDetection from '@/pages/RepeatIncidentDetection';
-import KnowledgeSearch from '@/pages/KnowledgeSearch';
-import KnowledgeArticle from '@/pages/KnowledgeArticle';
-import CreateKnowledgeArticle from '@/pages/CreateKnowledgeArticle';
-import AiAssistant from '@/pages/AiAssistant';
-import Analytics from '@/pages/Analytics';
-import Profile from '@/pages/Profile';
-import Settings from '@/pages/Settings';
-import Placeholder from '@/pages/Placeholder';
 import NotFound from '@/pages/NotFound';
+import Placeholder from '@/pages/Placeholder';
+
+const Dashboard = lazy(() => import('@/pages/Dashboard'));
+const IncidentList = lazy(() => import('@/pages/Incidents'));
+const CreateIncident = lazy(() => import('@/pages/Incidents/CreateIncident'));
+const IncidentDetail = lazy(() => import('@/pages/Incidents/IncidentDetail'));
+const LogUpload = lazy(() => import('@/pages/LogUpload'));
+const LogViewer = lazy(() => import('@/pages/LogViewer'));
+const AiAnalysis = lazy(() => import('@/pages/AiAnalysis'));
+const RepeatIncidentDetection = lazy(() => import('@/pages/RepeatIncidentDetection'));
+const KnowledgeSearch = lazy(() => import('@/pages/KnowledgeSearch'));
+const KnowledgeArticle = lazy(() => import('@/pages/KnowledgeArticle'));
+const CreateKnowledgeArticle = lazy(() => import('@/pages/CreateKnowledgeArticle'));
+const AiAssistant = lazy(() => import('@/pages/AiAssistant'));
+const Analytics = lazy(() => import('@/pages/Analytics'));
+const Profile = lazy(() => import('@/pages/Profile'));
+const Settings = lazy(() => import('@/pages/Settings'));
 
 /**
  * Application route configuration.
- * Placeholder routes will be replaced with full page implementations.
+ * Page components are lazy-loaded for code splitting.
  */
 const router = createBrowserRouter([
   {

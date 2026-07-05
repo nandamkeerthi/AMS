@@ -1,6 +1,6 @@
 import formOptions from '@/data/dummy/createIncidentForm.json';
 
-const delay = (ms = 500) => new Promise((resolve) => setTimeout(resolve, ms));
+import { delay } from '@/utils/async';
 
 function matchAiSuggestion(description = '') {
   const text = description.toLowerCase();

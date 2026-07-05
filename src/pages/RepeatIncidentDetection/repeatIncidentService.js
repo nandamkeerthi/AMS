@@ -1,12 +1,8 @@
 import repeatIncidentData from '@/data/dummy/repeatIncidentDetection.json';
 
-const SIMULATED_DELAY_MS = 350;
+import { delay } from '@/utils/async';
 
-function delay(ms = SIMULATED_DELAY_MS) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
+const SIMULATED_DELAY_MS = 350;
 
 function filterSimilarIncidents(
   incidents,
@@ -62,7 +58,7 @@ function sortSimilarIncidents(data, sortKey, sortDirection) {
 
 export const repeatIncidentService = {
   async getPageData() {
-    await delay();
+    await delay(SIMULATED_DELAY_MS);
     return repeatIncidentData;
   },
 

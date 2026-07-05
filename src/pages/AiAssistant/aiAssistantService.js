@@ -1,13 +1,8 @@
+import { delay } from '@/utils/async';
 import aiAssistantData from '@/data/dummy/aiAssistant.json';
 
 const TYPING_DELAY_MS = 1200;
 const LOAD_DELAY_MS = 350;
-
-function delay(ms) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
 
 function matchResponse(userMessage, responses) {
   const text = userMessage.toLowerCase();
