@@ -4,6 +4,7 @@ import Dashboard from '@/pages/Dashboard';
 import IncidentList from '@/pages/Incidents';
 import CreateIncident from '@/pages/Incidents/CreateIncident';
 import IncidentDetail from '@/pages/Incidents/IncidentDetail';
+import LogUpload from '@/pages/LogUpload';
 import Placeholder from '@/pages/Placeholder';
 import NotFound from '@/pages/NotFound';
 
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: 'incidents',
         element: <IncidentList />,
+      },
+      {
+        path: 'logs/upload',
+        element: <LogUpload />,
       },
       {
         path: 'tickets',

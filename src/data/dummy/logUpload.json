@@ -1,0 +1,92 @@
+{
+  "pageConfig": {
+    "title": "Log Upload",
+    "subtitle": "Upload application and infrastructure logs for AI-assisted incident analysis",
+    "maxFileSizeMb": 50,
+    "maxFiles": 20,
+    "helpText": "Logs are processed securely and linked to the selected application context. Uploads are simulated in this demo environment."
+  },
+  "context": {
+    "applications": [
+      { "id": "app-1", "label": "Customer Portal API" },
+      { "id": "app-2", "label": "Core Banking Service" },
+      { "id": "app-3", "label": "Payment Gateway" },
+      { "id": "app-4", "label": "Identity Provider" }
+    ],
+    "environments": [
+      { "id": "prod", "label": "Production" },
+      { "id": "staging", "label": "Staging" },
+      { "id": "uat", "label": "UAT" },
+      { "id": "dev", "label": "Development" }
+    ],
+    "defaultApplication": "app-1",
+    "defaultEnvironment": "prod"
+  },
+  "supportedFormats": [
+    {
+      "extension": ".log",
+      "label": "Log files",
+      "description": "Plain text application and server logs",
+      "mimeTypes": ["text/plain", "application/octet-stream"]
+    },
+    {
+      "extension": ".txt",
+      "label": "Text files",
+      "description": "Diagnostic output and trace files",
+      "mimeTypes": ["text/plain"]
+    },
+    {
+      "extension": ".json",
+      "label": "JSON logs",
+      "description": "Structured JSON log exports",
+      "mimeTypes": ["application/json", "text/json"]
+    },
+    {
+      "extension": ".csv",
+      "label": "CSV exports",
+      "description": "Tabular log and metric exports",
+      "mimeTypes": ["text/csv", "application/vnd.ms-excel"]
+    },
+    {
+      "extension": ".zip",
+      "label": "ZIP archives",
+      "description": "Compressed log bundles",
+      "mimeTypes": ["application/zip", "application/x-zip-compressed"]
+    },
+    {
+      "extension": ".gz",
+      "label": "GZIP archives",
+      "description": "Compressed single log files",
+      "mimeTypes": ["application/gzip", "application/x-gzip"]
+    }
+  ],
+  "recentUploads": [
+    {
+      "id": "upload-1",
+      "name": "api-gateway-20240705.log",
+      "size": 2457600,
+      "format": ".log",
+      "status": "completed",
+      "progress": 100,
+      "uploadedAt": "2024-07-05T09:15:00Z"
+    },
+    {
+      "id": "upload-2",
+      "name": "core-banking-errors.json",
+      "size": 524288,
+      "format": ".json",
+      "status": "completed",
+      "progress": 100,
+      "uploadedAt": "2024-07-05T08:42:00Z"
+    },
+    {
+      "id": "upload-3",
+      "name": "payment-gateway-trace.txt",
+      "size": 1048576,
+      "format": ".txt",
+      "status": "completed",
+      "progress": 100,
+      "uploadedAt": "2024-07-05T07:30:00Z"
+    }
+  ]
+}
