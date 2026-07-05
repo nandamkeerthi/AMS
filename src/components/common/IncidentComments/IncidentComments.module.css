@@ -1,0 +1,139 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-xl);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.commentItem {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+}
+
+.avatar {
+  width: 40px !important;
+  height: 40px !important;
+  font-size: 0.875rem !important;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.commentBody {
+  flex: 1;
+  min-width: 0;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border-light);
+  border-radius: 4px;
+  background: var(--color-surface);
+}
+
+.commentHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.engineerName {
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  color: var(--color-text-primary);
+}
+
+.role {
+  font-size: 0.75rem !important;
+  color: var(--color-text-muted);
+  padding: 2px 6px;
+  background: var(--color-border-light);
+  border-radius: 2px;
+}
+
+.time {
+  font-size: 0.75rem !important;
+  color: var(--color-text-muted);
+  margin-left: auto;
+}
+
+.commentText {
+  margin: 0 !important;
+  font-size: 0.875rem !important;
+  color: var(--color-text-secondary);
+  line-height: 1.6 !important;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.attachments {
+  margin-top: var(--spacing-sm);
+}
+
+.compose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.textField :global(.MuiOutlinedInput-root) {
+  border-radius: 4px;
+}
+
+.pendingAttachments {
+  margin-top: var(--spacing-xs);
+}
+
+.actions {
+  justify-content: flex-end;
+}
+
+.attachButton,
+.sendButton {
+  border-radius: 4px !important;
+  text-transform: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 600px) {
+  .commentItem {
+    gap: var(--spacing-sm);
+  }
+
+  .avatar {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 0.8125rem !important;
+  }
+
+  .commentBody {
+    padding: var(--spacing-sm);
+  }
+
+  .time {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .attachButton,
+  .sendButton {
+    width: 100%;
+  }
+}
