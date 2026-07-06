@@ -8,6 +8,9 @@ import {
   FiSettings,
   FiClock,
   FiShield,
+  FiUpload,
+  FiTerminal,
+  FiUser,
 } from 'react-icons/fi';
 
 /** Maps nav item icon keys to React Icon components */
@@ -21,6 +24,9 @@ const NAV_ICON_MAP = {
   settings: FiSettings,
   sla: FiShield,
   time: FiClock,
+  'log-upload': FiUpload,
+  'log-viewer': FiTerminal,
+  profile: FiUser,
 };
 
 export function getNavIcon(iconKey) {

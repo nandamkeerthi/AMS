@@ -48,8 +48,8 @@
     }
   ],
   "quickActions": [
-    { "id": "create-incident", "label": "Create incident", "icon": "incidents" },
-    { "id": "service-request", "label": "New service request", "icon": "tickets" },
+    { "id": "view-assigned-incidents", "label": "View Assigned Incidents", "icon": "incidents" },
+    { "id": "escalated-incidents", "label": "Escalated Incidents", "icon": "tickets" },
     { "id": "runbook", "label": "Run runbook", "icon": "knowledge" },
     { "id": "ask-ai", "label": "Ask AI assistant", "icon": "ai" },
     { "id": "view-alerts", "label": "View alerts", "icon": "analytics" }

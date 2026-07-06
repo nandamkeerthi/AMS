@@ -45,7 +45,8 @@ export const SIDEBAR_WIDTH = {
 export const APP_NAME = 'AMS Workbench';
 export const APP_TAGLINE = 'AI-Powered Application Maintenance & Support';
 
-export const NAV_ITEMS = [
+/** Full navigation catalog — preserved for L2, L3, Admin, and other role dashboards */
+export const ALL_NAV_ITEMS = [
   {
     id: 'dashboard',
     label: 'Dashboard',
@@ -88,6 +89,53 @@ export const NAV_ITEMS = [
     label: 'Settings',
     path: '/settings',
     icon: 'settings',
+  },
+];
+
+/** L1 Support Engineer sidebar navigation */
+export const NAV_ITEMS = [
+  {
+    id: 'dashboard',
+    label: 'Dashboard',
+    path: '/',
+    icon: 'dashboard',
+  },
+  {
+    id: 'incidents',
+    label: 'My Incidents',
+    path: '/incidents',
+    icon: 'incidents',
+    badge: 12,
+  },
+  {
+    id: 'knowledge',
+    label: 'Knowledge Search',
+    path: '/knowledge',
+    icon: 'knowledge',
+  },
+  {
+    id: 'log-upload',
+    label: 'Log Upload',
+    path: '/logs/upload',
+    icon: 'log-upload',
+  },
+  {
+    id: 'log-viewer',
+    label: 'Log Viewer',
+    path: '/logs/viewer',
+    icon: 'log-viewer',
+  },
+  {
+    id: 'ai-assistant',
+    label: 'AI Assistant',
+    path: '/ai-assistant',
+    icon: 'ai',
+  },
+  {
+    id: 'profile',
+    label: 'Profile',
+    path: '/profile',
+    icon: 'profile',
   },
 ];
 

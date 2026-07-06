@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 import toast from 'react-hot-toast';
 import { FiPlus } from 'react-icons/fi';
@@ -73,6 +74,7 @@ const incidentColumns = [
 ];
 
 function Dashboard() {
+  const navigate = useNavigate();
   const { data, loading, error, refetch } = useAsyncData(
     () => dashboardService.getDashboardData(),
     []
@@ -83,7 +85,22 @@ function Dashboard() {
   };
 
   const handleQuickAction = (action) => {
-    toast(`${action.label} — coming soon`, { icon: 'ℹ️' });
+    switch (action.id) {
+      case 'view-assigned-incidents':
+        navigate('/incidents');
+        return;
+      case 'escalated-incidents':
+        navigate('/incidents');
+        return;
+      case 'ask-ai':
+        navigate('/ai-assistant');
+        return;
+      case 'runbook':
+        navigate('/knowledge');
+        return;
+      default:
+        toast(`${action.label} — coming soon`, { icon: 'ℹ️' });
+    }
   };
 
   if (loading) {
@@ -121,8 +138,9 @@ function Dashboard() {
             startIcon={<FiPlus />}
             size="small"
             sx={{ borderRadius: '4px', textTransform: 'none', boxShadow: 'none' }}
+            onClick={() => navigate('/incidents')}
           >
-            Create incident
+            View Assigned Incidents
           </Button>
         }
       />

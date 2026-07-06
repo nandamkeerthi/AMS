@@ -259,9 +259,9 @@ function IncidentList() {
   return (
     <div className={styles.incidentList}>
       <PageHeader
-        title="Incidents"
+        title="My Incidents"
         subtitle="Manage and track production incidents across all applications"
-        breadcrumbs={[{ label: 'Home' }, { label: 'Incidents' }]}
+        breadcrumbs={[{ label: 'Home' }, { label: 'My Incidents' }]}
         variant="simple"
         actions={
           <>
