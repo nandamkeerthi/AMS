@@ -1,0 +1,41 @@
+{
+  "categories": [
+    { "value": "Runbook", "label": "Runbook" },
+    { "value": "Troubleshooting", "label": "Troubleshooting" },
+    { "value": "Best Practice", "label": "Best Practice" },
+    { "value": "Architecture", "label": "Architecture" }
+  ],
+  "applications": [
+    { "value": "Customer Portal API", "label": "Customer Portal API" },
+    { "value": "Core Banking Service", "label": "Core Banking Service" },
+    { "value": "Payment Gateway", "label": "Payment Gateway" },
+    { "value": "Identity Service", "label": "Identity Service" },
+    { "value": "Data Pipeline", "label": "Data Pipeline" }
+  ],
+  "suggestedTags": [
+    "api-gateway",
+    "connection-pool",
+    "deployment",
+    "rollback",
+    "database",
+    "monitoring",
+    "security",
+    "kubernetes",
+    "timeout",
+    "502"
+  ],
+  "aiSummaryPlaceholder": {
+    "summary": "AI will generate a concise summary after you complete the Problem Statement and Resolution Steps. Based on similar articles, this content may relate to upstream service degradation and deployment rollback procedures.",
+    "confidence": 0,
+    "status": "pending",
+    "keyPoints": [
+      "Summary generates automatically on publish",
+      "Include clear resolution steps for best results",
+      "Related articles will be suggested after save"
+    ]
+  },
+  "defaults": {
+    "category": "Troubleshooting",
+    "application": "Customer Portal API"
+  }
+}

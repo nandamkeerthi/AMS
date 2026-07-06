@@ -1,0 +1,54 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.downloadBtn {
+  border-radius: 4px !important;
+  text-transform: none !important;
+  box-shadow: none !important;
+}
+
+.metaStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: 1px solid var(--color-border-light);
+  border-radius: 4px;
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.04), rgba(124, 58, 237, 0.04));
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.metaStrip strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-lg);
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .metaStrip {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    gap: var(--spacing-md);
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "pageConfig": {
+    "title": "Settings",
+    "subtitle": "Configure workspace preferences, notifications, and dashboard defaults"
+  },
+  "defaults": {
+    "theme": "light",
+    "notifications": {
+      "emailAlerts": true,
+      "pushNotifications": true,
+      "incidentAssignments": true,
+      "slaBreaches": true,
+      "aiRecommendations": false,
+      "weeklyDigest": true
+    },
+    "language": "en-US",
+    "timezone": "America/Los_Angeles",
+    "dashboard": {
+      "defaultDateRange": "7d",
+      "showAiInsights": true,
+      "compactMetrics": false,
+      "autoRefresh": true
+    }
+  },
+  "options": {
+    "themes": [
+      { "value": "light", "label": "Light", "description": "Clean light interface with high contrast" },
+      { "value": "dark", "label": "Dark", "description": "Reduced eye strain for low-light environments" },
+      { "value": "system", "label": "System default", "description": "Match your operating system preference" }
+    ],
+    "languages": [
+      { "value": "en-US", "label": "English (United States)" },
+      { "value": "en-GB", "label": "English (United Kingdom)" },
+      { "value": "es-ES", "label": "Spanish (Spain)" },
+      { "value": "fr-FR", "label": "French (France)" },
+      { "value": "de-DE", "label": "German (Germany)" },
+      { "value": "ja-JP", "label": "Japanese (Japan)" }
+    ],
+    "timezones": [
+      { "value": "America/Los_Angeles", "label": "Pacific Time (US & Canada)" },
+      { "value": "America/Denver", "label": "Mountain Time (US & Canada)" },
+      { "value": "America/Chicago", "label": "Central Time (US & Canada)" },
+      { "value": "America/New_York", "label": "Eastern Time (US & Canada)" },
+      { "value": "Europe/London", "label": "London (GMT/BST)" },
+      { "value": "Europe/Paris", "label": "Central European Time" },
+      { "value": "Asia/Tokyo", "label": "Tokyo (JST)" },
+      { "value": "Asia/Kolkata", "label": "India Standard Time" },
+      { "value": "Australia/Sydney", "label": "Sydney (AEST/AEDT)" }
+    ],
+    "dateRanges": [
+      { "value": "24h", "label": "Last 24 hours" },
+      { "value": "7d", "label": "Last 7 days" },
+      { "value": "30d", "label": "Last 30 days" },
+      { "value": "90d", "label": "Last 90 days" }
+    ],
+    "notificationItems": [
+      { "key": "emailAlerts", "label": "Email alerts", "description": "Receive important updates via email" },
+      { "key": "pushNotifications", "label": "Push notifications", "description": "Browser notifications for real-time events" },
+      { "key": "incidentAssignments", "label": "Incident assignments", "description": "Notify when incidents are assigned to you" },
+      { "key": "slaBreaches", "label": "SLA breaches", "description": "Alert when incidents breach SLA thresholds" },
+      { "key": "aiRecommendations", "label": "AI recommendations", "description": "New AI-generated insights and suggestions" },
+      { "key": "weeklyDigest", "label": "Weekly digest", "description": "Summary of incidents and team performance" }
+    ]
+  }
+}

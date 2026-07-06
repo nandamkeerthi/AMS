@@ -1,0 +1,50 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.tableWrap {
+  padding: 0 var(--spacing-md) var(--spacing-md);
+}
+
+.incidentId {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.incidentTitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.muted {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.truncate {
+  display: block;
+  max-width: 240px;
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.compareBtn {
+  border-radius: 4px !important;
+  text-transform: none !important;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .page {
+    gap: var(--spacing-md);
+  }
+}

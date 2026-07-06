@@ -1,0 +1,48 @@
+{
+  "currentUser": {
+    "name": "Jane Doe",
+    "role": "Support Lead",
+    "initials": "JD"
+  },
+  "comments": [
+    {
+      "id": "ic-1",
+      "engineerName": "Sarah Chen",
+      "role": "Support Engineer",
+      "initials": "SC",
+      "avatarColor": "#0078d4",
+      "comment": "Started investigation. Initial logs point to upstream connection issues on core-banking-svc.",
+      "timestamp": "2024-07-05T08:35:00Z"
+    },
+    {
+      "id": "ic-2",
+      "engineerName": "Marcus Johnson",
+      "role": "Team Lead",
+      "initials": "MJ",
+      "avatarColor": "#107c10",
+      "comment": "Confirmed v2.4.1 deployment timeline. Approving rollback if AI analysis confidence holds above 90%.",
+      "timestamp": "2024-07-05T09:10:00Z"
+    },
+    {
+      "id": "ic-3",
+      "engineerName": "AI Assistant",
+      "role": "AI Agent",
+      "initials": "AI",
+      "avatarColor": "#8764b8",
+      "comment": "Auto-remediation runbook RB-0042 is available. Rollback can be executed with one-click approval.",
+      "timestamp": "2024-07-05T09:20:00Z"
+    },
+    {
+      "id": "ic-4",
+      "engineerName": "Sarah Chen",
+      "role": "Support Engineer",
+      "initials": "SC",
+      "avatarColor": "#0078d4",
+      "comment": "Attached gateway error logs from the last 30 minutes for review.",
+      "timestamp": "2024-07-05T09:45:00Z",
+      "attachments": [
+        { "id": "att-1", "name": "api-gateway-errors.log", "size": "24 KB" }
+      ]
+    }
+  ]
+}

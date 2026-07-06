@@ -1,0 +1,212 @@
+.dialogContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-xs) !important;
+}
+
+.searchWrap {
+  width: 100%;
+}
+
+.engineerList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-height: 360px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.engineerCard {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-surface);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.engineerCard:hover {
+  border-color: var(--color-primary);
+  background: rgba(37, 99, 235, 0.02);
+}
+
+.engineerCardSelected {
+  border-color: var(--color-primary);
+  background: rgba(37, 99, 235, 0.06);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 44px !important;
+  height: 44px !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-slate-800) 100%) !important;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  margin-bottom: 4px;
+}
+
+.name {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.team {
+  margin: 0 0 var(--spacing-xs);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.skill {
+  margin: 0 0 var(--spacing-sm);
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.workload {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 120px;
+}
+
+.workloadLabel {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.workloadValue {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.workloadBar {
+  width: 100%;
+  height: 4px;
+  background: var(--color-border-light);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.workloadFill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--color-primary);
+}
+
+.workloadHigh {
+  background: var(--color-warning);
+}
+
+.workloadFull {
+  background: var(--color-error);
+}
+
+.availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.available {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+}
+
+.busy {
+  background: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+}
+
+.away {
+  background: rgba(100, 116, 139, 0.1);
+  color: var(--color-text-secondary);
+}
+
+.offline {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-error);
+}
+
+.availabilityDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.empty {
+  padding: var(--spacing-xl);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.loadingWrap {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-xl);
+}
+
+.incidentRef {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.incidentId {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+@media (max-width: 480px) {
+  .engineerCard {
+    flex-direction: column;
+  }
+
+  .meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

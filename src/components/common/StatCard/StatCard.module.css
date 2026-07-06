@@ -1,0 +1,133 @@
+.statCard {
+  position: relative;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  cursor: default;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.accentBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.value {
+  margin: 0 0 var(--spacing-sm);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.1;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.change {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.changePositive {
+  color: var(--color-success);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.changeNegative {
+  color: var(--color-error);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.changeLabel {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin-left: var(--spacing-xs);
+}
+
+/* Color variants for icon background */
+.primary .iconWrapper {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--color-primary);
+}
+
+.primary .accentBar {
+  background: var(--color-primary);
+}
+
+.success .iconWrapper {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-success);
+}
+
+.success .accentBar {
+  background: var(--color-success);
+}
+
+.error .iconWrapper {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-error);
+}
+
+.error .accentBar {
+  background: var(--color-error);
+}
+
+.warning .iconWrapper {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--color-warning);
+}
+
+.warning .accentBar {
+  background: var(--color-warning);
+}
+
+@media (max-width: 480px) {
+  .value {
+    font-size: 1.625rem;
+  }
+}

@@ -1,0 +1,32 @@
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+}
+
+.searchWrap {
+  flex: 1;
+  min-width: 200px;
+  max-width: 360px;
+}
+
+.select {
+  min-width: 140px;
+}
+
+@media (max-width: 768px) {
+  .searchWrap {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+
+  .select {
+    flex: 1;
+    min-width: 120px;
+  }
+}

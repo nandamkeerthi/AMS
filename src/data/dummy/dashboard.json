@@ -1,0 +1,164 @@
+{
+  "lastUpdated": "2024-07-05T09:30:00Z",
+  "alertBanner": {
+    "severity": "critical",
+    "message": "2 critical incidents require immediate attention",
+    "count": 2
+  },
+  "stats": [
+    {
+      "id": "open-incidents",
+      "title": "Open Incidents",
+      "value": 47,
+      "change": 12,
+      "changeType": "increase",
+      "icon": "incidents",
+      "color": "error",
+      "linkLabel": "View all open"
+    },
+    {
+      "id": "sla-compliance",
+      "title": "SLA Compliance",
+      "value": "94.2%",
+      "change": 2.1,
+      "changeType": "increase",
+      "icon": "sla",
+      "color": "success",
+      "linkLabel": "View SLA report"
+    },
+    {
+      "id": "avg-resolution",
+      "title": "Mean Time to Resolve",
+      "value": "4.2h",
+      "change": 8,
+      "changeType": "decrease",
+      "icon": "time",
+      "color": "primary",
+      "linkLabel": "View trends"
+    },
+    {
+      "id": "ai-resolved",
+      "title": "AI Auto-Resolved",
+      "value": 128,
+      "change": 24,
+      "changeType": "increase",
+      "icon": "ai",
+      "color": "warning",
+      "linkLabel": "View AI activity"
+    }
+  ],
+  "quickActions": [
+    { "id": "view-assigned-incidents", "label": "View Assigned Incidents", "icon": "incidents" },
+    { "id": "escalated-incidents", "label": "Escalated Incidents", "icon": "tickets" },
+    { "id": "runbook", "label": "Run runbook", "icon": "knowledge" },
+    { "id": "ask-ai", "label": "Ask AI assistant", "icon": "ai" },
+    { "id": "view-alerts", "label": "View alerts", "icon": "analytics" }
+  ],
+  "serviceHealth": [
+    { "id": "core-banking", "name": "Core Banking API", "status": "degraded", "incidents": 2 },
+    { "id": "customer-portal", "name": "Customer Portal", "status": "healthy", "incidents": 0 },
+    { "id": "payment-gateway", "name": "Payment Gateway", "status": "healthy", "incidents": 0 },
+    { "id": "identity-service", "name": "Identity Service", "status": "degraded", "incidents": 1 },
+    { "id": "data-pipeline", "name": "Data Pipeline", "status": "healthy", "incidents": 0 }
+  ],
+  "incidentTrend": [
+    { "date": "Mon", "open": 32, "resolved": 28, "critical": 4 },
+    { "date": "Tue", "open": 38, "resolved": 35, "critical": 6 },
+    { "date": "Wed", "open": 42, "resolved": 40, "critical": 3 },
+    { "date": "Thu", "open": 35, "resolved": 38, "critical": 5 },
+    { "date": "Fri", "open": 47, "resolved": 42, "critical": 7 },
+    { "date": "Sat", "open": 28, "resolved": 30, "critical": 2 },
+    { "date": "Sun", "open": 22, "resolved": 25, "critical": 1 }
+  ],
+  "categoryDistribution": [
+    { "name": "Infrastructure", "value": 35, "color": "#2563EB" },
+    { "name": "Application", "value": 28, "color": "#10B981" },
+    { "name": "Database", "value": 18, "color": "#F59E0B" },
+    { "name": "Network", "value": 12, "color": "#EF4444" },
+    { "name": "Security", "value": 7, "color": "#8B5CF6" }
+  ],
+  "recentIncidents": [
+    {
+      "id": "INC-2024-1847",
+      "title": "Production API Gateway timeout errors",
+      "priority": "critical",
+      "status": "in_progress",
+      "assignee": "Sarah Chen",
+      "application": "Core Banking API",
+      "createdAt": "2024-07-05T08:15:00Z",
+      "slaBreached": true
+    },
+    {
+      "id": "INC-2024-1846",
+      "title": "Database connection pool exhaustion",
+      "priority": "high",
+      "status": "open",
+      "assignee": "Marcus Johnson",
+      "application": "Customer Portal",
+      "createdAt": "2024-07-05T07:42:00Z",
+      "slaBreached": false
+    },
+    {
+      "id": "INC-2024-1845",
+      "title": "SSL certificate expiring in 7 days",
+      "priority": "medium",
+      "status": "open",
+      "assignee": "AI Assistant",
+      "application": "Payment Gateway",
+      "createdAt": "2024-07-05T06:30:00Z",
+      "slaBreached": false
+    },
+    {
+      "id": "INC-2024-1844",
+      "title": "Memory leak detected in batch processor",
+      "priority": "high",
+      "status": "resolved",
+      "assignee": "Priya Sharma",
+      "application": "Data Pipeline",
+      "createdAt": "2024-07-04T22:10:00Z",
+      "slaBreached": false
+    },
+    {
+      "id": "INC-2024-1843",
+      "title": "User authentication failures spike",
+      "priority": "critical",
+      "status": "in_progress",
+      "assignee": "David Kim",
+      "application": "Identity Service",
+      "createdAt": "2024-07-04T18:55:00Z",
+      "slaBreached": true
+    }
+  ],
+  "aiInsights": [
+    {
+      "id": "insight-1",
+      "type": "prediction",
+      "title": "Predicted capacity issue",
+      "description": "Core Banking API may hit capacity limits within 48 hours based on current traffic trends.",
+      "confidence": 87,
+      "action": "Review scaling policies"
+    },
+    {
+      "id": "insight-2",
+      "type": "recommendation",
+      "title": "Root cause identified",
+      "description": "INC-2024-1847 likely caused by deployment v2.4.1. Rollback is recommended.",
+      "confidence": 92,
+      "action": "Initiate rollback"
+    },
+    {
+      "id": "insight-3",
+      "type": "automation",
+      "title": "Auto-remediation available",
+      "description": "3 open incidents can be auto-resolved using existing runbooks.",
+      "confidence": 95,
+      "action": "Run auto-remediation"
+    }
+  ],
+  "teamPerformance": [
+    { "name": "Sarah Chen", "resolved": 24, "avgTime": "3.2h", "sla": 96 },
+    { "name": "Marcus Johnson", "resolved": 19, "avgTime": "4.1h", "sla": 91 },
+    { "name": "Priya Sharma", "resolved": 22, "avgTime": "2.8h", "sla": 98 },
+    { "name": "David Kim", "resolved": 17, "avgTime": "5.0h", "sla": 88 }
+  ]
+}

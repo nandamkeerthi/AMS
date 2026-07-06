@@ -1,0 +1,215 @@
+{
+  "INC-2024-1847": {
+    "id": "INC-2024-1847",
+    "title": "Production API Gateway timeout errors",
+    "description": "Multiple timeout errors reported on Core Banking API gateway. Users experiencing 504 Gateway Timeout when accessing account balance and transaction history endpoints. Error rate spiked from 0.1% to 12.4% starting at 08:00 UTC.",
+    "priority": "critical",
+    "status": "in_progress",
+    "assignee": "Sarah Chen",
+    "reporter": "Monitoring System",
+    "team": "Platform Engineering",
+    "application": "Core Banking API",
+    "category": "Infrastructure",
+    "environment": "Production",
+    "impact": "enterprise",
+    "urgency": "immediate",
+    "createdAt": "2024-07-05T08:15:00Z",
+    "updatedAt": "2024-07-05T09:45:00Z",
+    "slaTarget": "2024-07-05T10:15:00Z",
+    "slaRemaining": "-32m",
+    "slaBreached": true,
+    "tags": ["api-gateway", "production", "timeout", "p1"],
+    "summary": {
+      "rootCause": "Under investigation — suspected deployment v2.4.1 regression",
+      "businessImpact": "~2,400 users unable to access account services",
+      "workaround": "Failover to secondary region partially mitigating impact",
+      "affectedServices": ["Account Balance API", "Transaction History API", "Payment Initiation"]
+    },
+    "timeline": [
+      {
+        "id": "tl-1",
+        "type": "system",
+        "author": "Monitoring System",
+        "action": "Incident created automatically from alert",
+        "timestamp": "2024-07-05T08:15:00Z"
+      },
+      {
+        "id": "tl-2",
+        "type": "status",
+        "author": "Sarah Chen",
+        "action": "Status changed to In Progress",
+        "timestamp": "2024-07-05T08:22:00Z"
+      },
+      {
+        "id": "tl-3",
+        "type": "comment",
+        "author": "Sarah Chen",
+        "action": "Investigating API gateway logs. Seeing connection pool exhaustion on upstream services.",
+        "timestamp": "2024-07-05T08:35:00Z"
+      },
+      {
+        "id": "tl-4",
+        "type": "ai",
+        "author": "AI Assistant",
+        "action": "Root cause analysis: Deployment v2.4.1 introduced increased connection timeout. Rollback recommended.",
+        "timestamp": "2024-07-05T08:50:00Z"
+      },
+      {
+        "id": "tl-5",
+        "type": "comment",
+        "author": "Marcus Johnson",
+        "action": "Confirmed v2.4.1 deployed at 07:45 UTC. Correlates with error spike timeline.",
+        "timestamp": "2024-07-05T09:10:00Z"
+      },
+      {
+        "id": "tl-6",
+        "type": "assignment",
+        "author": "System",
+        "action": "Escalated to Platform Engineering on-call",
+        "timestamp": "2024-07-05T09:30:00Z"
+      }
+    ],
+    "logs": [
+      { "id": "log-1", "timestamp": "2024-07-05T09:44:12Z", "level": "ERROR", "source": "api-gateway", "message": "upstream timed out (110: Connection timed out) while connecting to upstream" },
+      { "id": "log-2", "timestamp": "2024-07-05T09:43:58Z", "level": "ERROR", "source": "api-gateway", "message": "502 Bad Gateway — upstream service unavailable: core-banking-svc:8080" },
+      { "id": "log-3", "timestamp": "2024-07-05T09:43:41Z", "level": "WARN", "source": "core-banking-svc", "message": "Connection pool exhausted: 200/200 active connections" },
+      { "id": "log-4", "timestamp": "2024-07-05T09:42:15Z", "level": "ERROR", "source": "api-gateway", "message": "504 Gateway Timeout — request exceeded 30s threshold" },
+      { "id": "log-5", "timestamp": "2024-07-05T09:41:03Z", "level": "INFO", "source": "deploy-agent", "message": "Deployment v2.4.1 health check: DEGRADED (2/5 pods ready)" },
+      { "id": "log-6", "timestamp": "2024-07-05T09:40:22Z", "level": "WARN", "source": "core-banking-svc", "message": "GC pause 4.2s — heap usage at 89%" },
+      { "id": "log-7", "timestamp": "2024-07-05T09:38:55Z", "level": "ERROR", "source": "api-gateway", "message": "Rate limit bypass triggered for /api/v2/accounts/* — 847 req/min" },
+      { "id": "log-8", "timestamp": "2024-07-05T09:37:10Z", "level": "DEBUG", "source": "load-balancer", "message": "Removing unhealthy instance core-banking-svc-7f8b9c from pool" }
+    ],
+    "aiAnalysis": {
+      "confidence": 92,
+      "summary": "Analysis indicates deployment v2.4.1 as the likely root cause. Connection pool configuration change reduced max connections from 500 to 200, causing exhaustion under peak load.",
+      "findings": [
+        "Error spike correlates within 30 minutes of v2.4.1 deployment",
+        "Connection pool exhaustion pattern matches previous INC-2024-1720",
+        "Secondary region operating normally on v2.4.0 — confirms regression hypothesis"
+      ],
+      "recommendedActions": [
+        "Rollback deployment to v2.4.0 in primary region",
+        "Scale connection pool to 400 as interim measure",
+        "Enable circuit breaker for upstream health checks"
+      ]
+    },
+    "suggestedFixes": [
+      {
+        "id": "fix-1",
+        "title": "Rollback to v2.4.0",
+        "description": "Revert Core Banking API deployment to last known stable version.",
+        "confidence": 92,
+        "effort": "Low",
+        "automated": true
+      },
+      {
+        "id": "fix-2",
+        "title": "Increase connection pool size",
+        "description": "Update HikariCP maxPoolSize from 200 to 400 in production config.",
+        "confidence": 78,
+        "effort": "Medium",
+        "automated": false
+      },
+      {
+        "id": "fix-3",
+        "title": "Enable regional failover",
+        "description": "Route 100% traffic to secondary region until primary is stable.",
+        "confidence": 85,
+        "effort": "Low",
+        "automated": true
+      }
+    ],
+    "relatedIncidents": [
+      { "id": "INC-2024-1846", "title": "Database connection pool exhaustion", "status": "open", "priority": "high" },
+      { "id": "INC-2024-1720", "title": "API gateway timeout after deployment", "status": "resolved", "priority": "critical" },
+      { "id": "INC-2024-1835", "title": "Message queue backlog growing", "status": "in_progress", "priority": "critical" }
+    ],
+    "knowledgeArticles": [
+      { "id": "KB-1042", "title": "API Gateway timeout troubleshooting guide", "relevance": 95 },
+      { "id": "KB-0891", "title": "Deployment rollback procedure — Core Banking", "relevance": 91 },
+      { "id": "KB-0756", "title": "Connection pool tuning runbook", "relevance": 84 }
+    ],
+    "comments": [
+      {
+        "id": "c-1",
+        "author": "Sarah Chen",
+        "role": "Support Engineer",
+        "content": "Started investigation. Initial logs point to upstream connection issues on core-banking-svc.",
+        "timestamp": "2024-07-05T08:35:00Z"
+      },
+      {
+        "id": "c-2",
+        "author": "Marcus Johnson",
+        "role": "Team Lead",
+        "content": "Confirmed v2.4.1 deployment timeline. Approving rollback if AI analysis confidence holds above 90%.",
+        "timestamp": "2024-07-05T09:10:00Z"
+      },
+      {
+        "id": "c-3",
+        "author": "AI Assistant",
+        "role": "AI Agent",
+        "content": "Auto-remediation runbook RB-0042 is available. Rollback can be executed with one-click approval.",
+        "timestamp": "2024-07-05T09:20:00Z"
+      }
+    ],
+    "resolution": {
+      "status": "unresolved",
+      "code": null,
+      "notes": null,
+      "resolvedBy": null,
+      "resolvedAt": null
+    }
+  },
+  "INC-2024-1846": {
+    "id": "INC-2024-1846",
+    "title": "Database connection pool exhaustion",
+    "description": "Customer Portal database connection pool at 98% capacity causing slow page loads.",
+    "priority": "high",
+    "status": "open",
+    "assignee": "Marcus Johnson",
+    "reporter": "Jane Doe",
+    "team": "Database Operations",
+    "application": "Customer Portal",
+    "category": "Database",
+    "environment": "Production",
+    "impact": "department",
+    "urgency": "high",
+    "createdAt": "2024-07-05T07:42:00Z",
+    "updatedAt": "2024-07-05T08:55:00Z",
+    "slaTarget": "2024-07-05T11:42:00Z",
+    "slaRemaining": "45m",
+    "slaBreached": false,
+    "tags": ["database", "connection-pool"],
+    "summary": {
+      "rootCause": "Long-running queries blocking pool connections",
+      "businessImpact": "Customer portal response times degraded to 8-12 seconds",
+      "workaround": "Read replica routing enabled for reporting queries",
+      "affectedServices": ["Customer Portal Web", "Customer Portal API"]
+    },
+    "timeline": [
+      { "id": "tl-1", "type": "system", "author": "Jane Doe", "action": "Incident created", "timestamp": "2024-07-05T07:42:00Z" },
+      { "id": "tl-2", "type": "assignment", "author": "System", "action": "Assigned to Marcus Johnson", "timestamp": "2024-07-05T07:45:00Z" }
+    ],
+    "logs": [
+      { "id": "log-1", "timestamp": "2024-07-05T08:50:00Z", "level": "WARN", "source": "customer-portal-db", "message": "Connection pool: 196/200 active connections" },
+      { "id": "log-2", "timestamp": "2024-07-05T08:48:00Z", "level": "ERROR", "source": "customer-portal-api", "message": "Timeout waiting for connection from pool after 30000ms" }
+    ],
+    "aiAnalysis": {
+      "confidence": 85,
+      "summary": "Long-running analytics queries are holding connections. Recommend query timeout enforcement and read replica offload.",
+      "findings": ["3 queries running > 5 minutes", "Pool size unchanged since last month"],
+      "recommendedActions": ["Kill long-running queries", "Increase pool to 300", "Route analytics to replica"]
+    },
+    "suggestedFixes": [
+      { "id": "fix-1", "title": "Kill long-running queries", "description": "Terminate queries exceeding 5 minute threshold.", "confidence": 88, "effort": "Low", "automated": true }
+    ],
+    "relatedIncidents": [
+      { "id": "INC-2024-1847", "title": "Production API Gateway timeout errors", "status": "in_progress", "priority": "critical" }
+    ],
+    "knowledgeArticles": [
+      { "id": "KB-0987", "title": "Database connection pool tuning runbook", "relevance": 92 }
+    ],
+    "comments": [],
+    "resolution": { "status": "unresolved", "code": null, "notes": null, "resolvedBy": null, "resolvedAt": null }
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "articles": {
+    "KB-1042": {
+      "id": "KB-1042",
+      "title": "API Gateway timeout troubleshooting guide",
+      "metadata": {
+        "category": "Troubleshooting",
+        "application": "Customer Portal API",
+        "author": "Sarah Chen",
+        "lastUpdated": "2024-06-28T14:30:00Z",
+        "publishedAt": "2024-03-10T09:00:00Z",
+        "viewCount": 2847,
+        "version": "2.1",
+        "status": "published",
+        "tags": ["api-gateway", "timeout", "502", "upstream", "502/504"]
+      },
+      "problem": "Customer-facing API endpoints return 502 Bad Gateway or 504 Gateway Timeout errors when the API Gateway cannot reach healthy upstream services within the configured timeout threshold.",
+      "symptoms": [
+        "Elevated 502/504 error rate on /api/v2/accounts/* endpoints",
+        "Upstream connect timeout messages in API Gateway logs",
+        "P99 latency exceeding 4 seconds on affected routes",
+        "Circuit breaker OPEN state for upstream services",
+        "Monitoring alerts AGW-5XX-SPIKE triggered"
+      ],
+      "rootCause": "Upstream service unavailability or slow response caused by connection pool exhaustion, deployment regressions, or misconfigured health checks. The gateway times out waiting for a response from the upstream before the client connection is closed.",
+      "resolutionSteps": [
+        {
+          "id": "step-1",
+          "title": "Confirm upstream health",
+          "description": "Check upstream service health endpoints and pod readiness. Verify no deployment in progress."
+        },
+        {
+          "id": "step-2",
+          "title": "Review gateway error logs",
+          "description": "Search for upstream timed out and connection refused messages. Correlate timestamps with deployment events."
+        },
+        {
+          "id": "step-3",
+          "title": "Check connection pool metrics",
+          "description": "Inspect HikariCP active/waiting connection counts on upstream services. Pool exhaustion is the most common root cause."
+        },
+        {
+          "id": "step-4",
+          "title": "Apply interim mitigation",
+          "description": "Enable circuit breaker, increase pool size, or route traffic to secondary region while investigating."
+        },
+        {
+          "id": "step-5",
+          "title": "Execute rollback if needed",
+          "description": "If error spike correlates with a recent deployment, follow the rollback runbook KB-0891."
+        },
+        {
+          "id": "step-6",
+          "title": "Validate recovery",
+          "description": "Confirm error rate returns to baseline and P99 latency is below 2 seconds for 15 minutes."
+        }
+      ],
+      "commands": [
+        {
+          "id": "cmd-1",
+          "label": "Check gateway pod status",
+          "command": "kubectl get pods -n production -l app=api-gateway",
+          "description": "Verify all gateway pods are Running and ready."
+        },
+        {
+          "id": "cmd-2",
+          "label": "Tail gateway error logs",
+          "command": "kubectl logs -n production -l app=api-gateway --tail=100 | grep -E 'ERROR|upstream timed out'",
+          "description": "Filter for upstream timeout and 502 errors."
+        },
+        {
+          "id": "cmd-3",
+          "label": "Check upstream health",
+          "command": "curl -s https://core-banking-svc.internal/health | jq .",
+          "description": "Verify upstream health endpoint response."
+        },
+        {
+          "id": "cmd-4",
+          "label": "Connection pool metrics",
+          "command": "kubectl exec -n production deploy/core-banking-svc -- curl -s localhost:8080/actuator/metrics/hikaricp.connections.active",
+          "description": "Check active connection count against pool maximum."
+        }
+      ],
+      "relatedArticles": [
+        { "id": "KB-0891", "title": "Deployment rollback procedure — Core Banking", "relevance": 91 },
+        { "id": "KB-0756", "title": "Connection pool tuning runbook", "relevance": 84 },
+        { "id": "KB-0612", "title": "Regional failover activation guide", "relevance": 79 },
+        { "id": "KB-0156", "title": "Canary deployment checklist", "relevance": 72 }
+      ],
+      "aiSummary": {
+        "summary": "This runbook addresses 502/504 gateway errors caused by upstream unavailability. The most effective resolution path is verifying upstream health, checking connection pool metrics, and rolling back recent deployments if a regression is confirmed.",
+        "confidence": 92,
+        "keyPoints": [
+          "Connection pool exhaustion is the leading cause in 68% of similar incidents",
+          "Rollback resolves 94% of deployment-related timeout incidents within 20 minutes",
+          "Always validate recovery metrics for 15 minutes before closing the incident"
+        ]
+      },
+      "attachments": [
+        { "id": "att-1", "name": "gateway-timeout-flowchart.pdf", "size": "156 KB", "type": "pdf" },
+        { "id": "att-2", "name": "sample-gateway-errors.log", "size": "24 KB", "type": "log" },
+        { "id": "att-3", "name": "health-check-config.yaml", "size": "4 KB", "type": "yaml" }
+      ]
+    },
+    "KB-0891": {
+      "id": "KB-0891",
+      "title": "Deployment rollback procedure — Core Banking",
+      "metadata": {
+        "category": "Runbook",
+        "application": "Core Banking Service",
+        "author": "Marcus Johnson",
+        "lastUpdated": "2024-06-15T09:00:00Z",
+        "publishedAt": "2024-01-20T10:00:00Z",
+        "viewCount": 1923,
+        "version": "1.4",
+        "status": "published",
+        "tags": ["deployment", "rollback", "core-banking"]
+      },
+      "problem": "A production deployment introduces regressions requiring immediate rollback to the previous stable version.",
+      "symptoms": [
+        "Error rate spike after deployment",
+        "Health checks failing on new pods",
+        "SLA breach imminent"
+      ],
+      "rootCause": "Deployment regression — configuration or code change in the new version causes service degradation.",
+      "resolutionSteps": [
+        { "id": "step-1", "title": "Approve rollback", "description": "Obtain team lead approval for production rollback." },
+        { "id": "step-2", "title": "Execute rollback", "description": "Run rollback command to revert to previous revision." },
+        { "id": "step-3", "title": "Validate", "description": "Confirm error rate returns to baseline." }
+      ],
+      "commands": [
+        {
+          "id": "cmd-1",
+          "label": "Rollback deployment",
+          "command": "kubectl rollout undo deployment/core-banking-svc -n production",
+          "description": "Revert to previous deployment revision."
+        }
+      ],
+      "relatedArticles": [
+        { "id": "KB-1042", "title": "API Gateway timeout troubleshooting guide", "relevance": 88 },
+        { "id": "KB-0156", "title": "Canary deployment checklist", "relevance": 80 }
+      ],
+      "aiSummary": {
+        "summary": "Standard rollback procedure for core-banking-svc production deployments with approval gates and validation steps.",
+        "confidence": 95,
+        "keyPoints": ["Requires team lead approval", "Typical recovery time 15–20 minutes"]
+      },
+      "attachments": [
+        { "id": "att-1", "name": "rollback-checklist.pdf", "size": "89 KB", "type": "pdf" }
+      ]
+    }
+  }
+}
